@@ -1,23 +1,47 @@
-import { GET_MOVIE_GENRES,  GET_TV_GENRES } from '../actions/actionTypes'
+import {
+  GET_MOVIE_GENRES,
+  GET_TV_GENRES,
+  START_FETCH,
+  END_FETCH,
+  CLEAR_RESULTS
+} from "../actions/actionTypes"
 
 const initialState = {
-  genres:[]
+  genres: [],
+  loading: false
 }
 
-const movieTvReducer = (state=initialState, action) => {
-  switch(action.type){
+const movieTvReducer = (state = initialState, action) => {
+  switch (action.type) {
+    case START_FETCH: {
+      return {
+        ...state,
+        loading: true
+      }
+    }
+    case END_FETCH: {
+      return {
+        ...state,
+        loading: false
+      }
+    }
     case GET_MOVIE_GENRES:
-    return {
-      ...state,
-      genres:action.payload
-    }
+      return {
+        ...state,
+        genres: action.payload
+      }
     case GET_TV_GENRES:
-    return {
-      ...state,
-      genres:action.payload
-    }
+      return {
+        ...state,
+        genres: action.payload
+      }
+    case CLEAR_RESULTS:
+      return {
+        ...state,
+        genres: []
+      }
     default:
-    return state
+      return state
   }
 }
 
