@@ -1,41 +1,41 @@
-import React, { Component } from "react"
-import { connect } from "react-redux"
-import MovieList from "./MovieList"
-import Action from "./Action"
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import MovieList from "./MovieList";
+import Action from "./Action";
 import {
   getMoviesGenres,
   getTvsGenres,
   clearResults
-} from "../actions/movieTvActions"
+} from "../actions/movieTvActions";
 
 class MainDashboard extends Component {
   state = {
     toggle: true
-  }
+  };
   componentDidMount() {
-    this.props.getMoviesGenres()
+    this.props.getMoviesGenres();
     this.setState({
       toggle: true
-    })
+    });
   }
   handleGetMovieGenres = () => {
-    this.props.clearResults()
-    this.props.getMoviesGenres()
+    this.props.clearResults();
+    this.props.getMoviesGenres();
     this.setState(prevState => ({
       toggle: !prevState.toggle
-    }))
-  }
+    }));
+  };
 
   handleGetTvGenres = () => {
-    this.props.clearResults()
-    this.props.getTvsGenres()
+    this.props.clearResults();
+    this.props.getTvsGenres();
     this.setState(prevState => ({
       toggle: !prevState.toggle
-    }))
-  }
+    }));
+  };
   render() {
-    const { toggle } = this.state
-    const { genres, loading } = this.props
+    const { toggle } = this.state;
+    const { genres, loading } = this.props;
     return (
       <div>
         <main>
@@ -47,23 +47,22 @@ class MainDashboard extends Component {
           <MovieList genres={genres} loading={loading} />
         </main>
       </div>
-    )
+    );
   }
 }
 const mapState = state => {
-  console.log(state)
   return {
     genres: state.moviesTvs.genres,
     loading: state.moviesTvs.loading
-  }
-}
+  };
+};
 
 const actions = {
   getMoviesGenres,
   getTvsGenres,
   clearResults
-}
+};
 export default connect(
   mapState,
   actions
-)(MainDashboard)
+)(MainDashboard);

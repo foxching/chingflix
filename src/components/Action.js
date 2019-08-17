@@ -20,7 +20,7 @@ const Action = props => {
   const { classes, toggle, handleGetMovieGenres, handleGetTvGenres } = props;
   return (
     <div className={classes.heroContent}>
-      <Container maxWidth="sm">
+      <Container maxWidth="sm" >
         <Typography variant="h5" align="center" color="initial" paragraph>
           Movies and Shows Finder
         </Typography>
