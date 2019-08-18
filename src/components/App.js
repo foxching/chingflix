@@ -1,18 +1,23 @@
 import React from "react";
-import Footer from "./Footer";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
 import NavDrawer from "./Material UI/Drawer";
 import MainDashboard from "./MainDashboard";
+import Footer from "./Footer";
+import Sample from "./Sample";
 
 class App extends React.Component {
- 
   render() {
-    
     return (
-      <div>
+      <BrowserRouter>
         <NavDrawer />
-        <MainDashboard/>
+        <div>
+          <Switch>
+            <Route path="/" component={MainDashboard} exact />
+            <Route path="/sample" component={Sample} />
+          </Switch>
+        </div>
         <Footer />
-      </div>
+      </BrowserRouter>
     );
   }
 }
