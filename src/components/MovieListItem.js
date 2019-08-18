@@ -21,18 +21,18 @@ const styles = theme => ({
 });
 
 const MovieListItem = props => {
-  const { classes, genre } = props;
+  const { classes, name } = props;
 
   return (
     <Card className={classes.card}>
       <CardMedia
         className={classes.cardMedia}
-        image={`https://source.unsplash.com/random?${genre.name}`}
+        image={`https://source.unsplash.com/random?${name}`}
         title="Image title"
       />
       <CardContent className={classes.cardContent}>
         <Typography variant="h6" component="h5">
-          {genre.name}
+          {name}
         </Typography>
       </CardContent>
     </Card>

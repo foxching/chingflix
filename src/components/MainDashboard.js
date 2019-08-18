@@ -10,7 +10,7 @@ import {
 
 class MainDashboard extends Component {
   state = {
-    toggle: true
+    toggle: false
   };
   componentDidMount() {
     this.props.getMoviesGenres();
@@ -19,7 +19,6 @@ class MainDashboard extends Component {
     });
   }
   handleGetMovieGenres = () => {
-    this.props.clearResults();
     this.props.getMoviesGenres();
     this.setState(prevState => ({
       toggle: !prevState.toggle
@@ -27,7 +26,6 @@ class MainDashboard extends Component {
   };
 
   handleGetTvGenres = () => {
-    this.props.clearResults();
     this.props.getTvsGenres();
     this.setState(prevState => ({
       toggle: !prevState.toggle

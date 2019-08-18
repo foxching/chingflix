@@ -21,10 +21,10 @@ const MovieList = props => {
       <Container className={classes.cardGrid} maxWidth="md">
         <Grid container spacing={4}>
           {genres &&
-            genres.map(genre => (
-              <Grid item key={genre.id} xs={6} sm={6} md={3}>
-                <Link to="/sample" style={{ textDecoration: "none" }}>
-                  <MovieListItem genre={genre} />
+            genres.map(({ name, id }) => (
+              <Grid item key={id} xs={6} sm={6} md={3}>
+                <Link to={`/genre/${name}`} style={{ textDecoration: "none" }}>
+                  <MovieListItem name={name} />
                 </Link>
               </Grid>
             ))}
