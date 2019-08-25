@@ -13,7 +13,7 @@ class App extends React.Component {
         <div>
           <Switch>
             <Route path="/" component={MainDashboard} exact />
-            <Route path="/genre/:name" component={Sample} />
+            <Route path="/:genre/:name" component={Sample} />
           </Switch>
         </div>
         <Footer />

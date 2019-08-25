@@ -13,7 +13,7 @@ const styles = theme => ({
 });
 
 const MovieList = props => {
-  const { classes, genres, loading } = props;
+  const { classes, genres, loading, url } = props;
 
   return (
     <React.Fragment>
@@ -23,7 +23,7 @@ const MovieList = props => {
           {genres &&
             genres.map(({ name, id }) => (
               <Grid item key={id} xs={6} sm={6} md={3}>
-                <Link to={`/genre/${name}`} style={{ textDecoration: "none" }}>
+                <Link to={`/${url}/${name}`} style={{ textDecoration: "none" }}>
                   <MovieListItem name={name} />
                 </Link>
               </Grid>

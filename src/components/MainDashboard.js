@@ -10,29 +10,33 @@ import {
 
 class MainDashboard extends Component {
   state = {
-    toggle: false
+    toggle: false,
+    url: "movies"
   };
   componentDidMount() {
     this.props.getMoviesGenres();
     this.setState({
-      toggle: true
+      toggle: true,
+      url: "movies"
     });
   }
   handleGetMovieGenres = () => {
     this.props.getMoviesGenres();
     this.setState(prevState => ({
-      toggle: !prevState.toggle
+      toggle: !prevState.toggle,
+      url: "movies"
     }));
   };
 
   handleGetTvGenres = () => {
     this.props.getTvsGenres();
     this.setState(prevState => ({
-      toggle: !prevState.toggle
+      toggle: !prevState.toggle,
+      url: "tvs"
     }));
   };
   render() {
-    const { toggle } = this.state;
+    const { toggle, url } = this.state;
     const { genres, loading } = this.props;
     return (
       <div>
@@ -42,7 +46,7 @@ class MainDashboard extends Component {
             handleGetMovieGenres={this.handleGetMovieGenres}
             handleGetTvGenres={this.handleGetTvGenres}
           />
-          <MovieList genres={genres} loading={loading} />
+          <MovieList url={url} genres={genres} loading={loading} />
         </main>
       </div>
     );

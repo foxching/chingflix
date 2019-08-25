@@ -16,35 +16,25 @@ const styles = theme => ({
   }
 });
 
-const Action = props => {
-  const { classes, toggle, handleGetMovieGenres, handleGetTvGenres } = props;
+const Action2 = props => {
+  const { classes, handleGoBack, name } = props;
   return (
     <div className={classes.heroContent}>
       <Container maxWidth="sm">
         <Typography variant="h5" align="center" color="initial" paragraph>
-          Movies and Shows Finder
+          {name}
         </Typography>
 
         <div className={classes.heroButtons}>
           <Grid container spacing={2} justify="center">
             <Grid item>
               <Button
-                onClick={handleGetMovieGenres}
+                onClick={handleGoBack}
                 size="large"
-                variant={toggle ? "contained" : "outlined"}
+                variant="contained"
                 color="primary"
               >
-                Movies
-              </Button>
-            </Grid>
-            <Grid item>
-              <Button
-                onClick={handleGetTvGenres}
-                size="large"
-                variant={toggle ? "outlined" : "contained"}
-                color="primary"
-              >
-                Tv Shows
+               Go Back
               </Button>
             </Grid>
           </Grid>
@@ -53,9 +43,9 @@ const Action = props => {
     </div>
   );
 };
-Action.propTypes = {
+Action2.propTypes = {
   classes: PropTypes.object.isRequired,
   theme: PropTypes.object.isRequired
 };
 
-export default withStyles(styles, { withTheme: true })(Action);
+export default withStyles(styles, { withTheme: true })(Action2);
