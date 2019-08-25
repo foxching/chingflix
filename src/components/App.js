@@ -3,7 +3,7 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 import NavDrawer from "./Material UI/Drawer";
 import MainDashboard from "./MainDashboard";
 import Footer from "./Footer";
-import Sample from "./Sample";
+import SecondaryDashboard from "./SecondaryDashboard";
 
 class App extends React.Component {
   render() {
@@ -13,7 +13,7 @@ class App extends React.Component {
         <div>
           <Switch>
             <Route path="/" component={MainDashboard} exact />
-            <Route path="/:genre/:name" component={Sample} />
+            <Route path="/:genre/:name" component={SecondaryDashboard} />
           </Switch>
         </div>
         <Footer />

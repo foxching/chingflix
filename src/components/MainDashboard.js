@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import MovieList from "./MovieList";
+import GenreList from "./GenreList";
 import Action from "./Action";
 import {
   getMoviesGenres,
@@ -46,7 +46,7 @@ class MainDashboard extends Component {
             handleGetMovieGenres={this.handleGetMovieGenres}
             handleGetTvGenres={this.handleGetTvGenres}
           />
-          <MovieList url={url} genres={genres} loading={loading} />
+          <GenreList url={url} genres={genres} loading={loading} />
         </main>
       </div>
     );

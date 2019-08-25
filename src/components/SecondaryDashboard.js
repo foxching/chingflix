@@ -16,7 +16,7 @@ const styles = theme => ({
   }
 });
 
-class Sample extends Component {
+class SecondaryDashboard extends Component {
   handleGoBack = () => {
     this.props.history.goBack();
   };
@@ -80,4 +80,4 @@ class Sample extends Component {
   }
 }
 
-export default withStyles(styles, { withTheme: true })(Sample);
+export default withStyles(styles, { withTheme: true })(SecondaryDashboard);

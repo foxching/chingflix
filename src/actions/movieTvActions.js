@@ -12,7 +12,7 @@ export const getMoviesGenres = () => {
     try {
       dispatch({ type: CLEAR_RESULTS });
       dispatch({ type: START_FETCH });
-      await delay(2000);
+      await delay(1000);
       const response = await axios.get(
         "https://api.themoviedb.org/3/genre/movie/list?api_key=d3de272397bb7105279e2c887f31f0bb&language=en-US"
       );
@@ -29,7 +29,7 @@ export const getTvsGenres = () => {
     try {
       dispatch({ type: CLEAR_RESULTS });
       dispatch({ type: START_FETCH });
-      await delay(2000);
+      await delay(1000);
       const response = await axios.get(
         "https://api.themoviedb.org/3/genre/tv/list?api_key=d3de272397bb7105279e2c887f31f0bb&language=en-US"
       );

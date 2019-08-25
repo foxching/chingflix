@@ -20,7 +20,7 @@ const styles = theme => ({
   }
 });
 
-const MovieListItem = props => {
+const GenreListItem = props => {
   const { classes, name } = props;
 
   return (
@@ -39,4 +39,4 @@ const MovieListItem = props => {
   );
 };
 
-export default withStyles(styles, { withTheme: true })(MovieListItem);
+export default withStyles(styles, { withTheme: true })(GenreListItem);

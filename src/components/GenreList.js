@@ -3,7 +3,7 @@ import Grid from "@material-ui/core/Grid";
 import { withStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import { Link } from "react-router-dom";
-import MovieListItem from "./MovieListItem";
+import GenreListItem from "./GenreListItem";
 
 const styles = theme => ({
   cardGrid: {
@@ -12,7 +12,7 @@ const styles = theme => ({
   }
 });
 
-const MovieList = props => {
+const GenreList = props => {
   const { classes, genres, loading, url } = props;
 
   return (
@@ -24,7 +24,7 @@ const MovieList = props => {
             genres.map(({ name, id }) => (
               <Grid item key={id} xs={6} sm={6} md={3}>
                 <Link to={`/${url}/${name}`} style={{ textDecoration: "none" }}>
-                  <MovieListItem name={name} />
+                  <GenreListItem name={name} />
                 </Link>
               </Grid>
             ))}
@@ -34,4 +34,4 @@ const MovieList = props => {
   );
 };
 
-export default withStyles(styles, { withTheme: true })(MovieList);
+export default withStyles(styles, { withTheme: true })(GenreList);
