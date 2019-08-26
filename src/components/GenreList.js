@@ -26,7 +26,8 @@ const GenreList = props => {
                 <Link
                   to={{
                     pathname: `/${url}/${name}`,
-                    id: `${id}`
+                    id: `${id}`,
+                    url: `${url}`
                   }}
                   style={{ textDecoration: "none" }}
                 >

@@ -13,11 +13,11 @@ class MainDashboard extends Component {
     toggle: false,
     url: "movies"
   };
-  componentDidMount() {
+
+  componentWillMount() {
     this.props.getMoviesGenres();
     this.setState({
-      toggle: true,
-      url: "movies"
+      toggle: true
     });
   }
   handleGetMovieGenres = () => {

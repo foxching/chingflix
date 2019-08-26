@@ -9,7 +9,10 @@ class SecondaryDashboard extends Component {
     this.props.history.goBack();
   };
   componentDidMount() {
-    this.props.getMoviesbyGenre(this.props.location.id);
+    if (this.props.location.url === "movies") {
+      this.props.getMoviesbyGenre(this.props.location.id);
+    } else {
+    }
   }
 
   render() {
@@ -29,6 +32,7 @@ class SecondaryDashboard extends Component {
 }
 
 const mapState = state => {
+  console.log(state);
   return {
     movies: state.moviesTvs.movies
   };

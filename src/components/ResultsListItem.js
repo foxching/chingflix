@@ -1,4 +1,5 @@
 import React from "react";
+import moment from "moment";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import classnames from "classnames";
@@ -50,8 +51,17 @@ class ResultsListItem extends React.Component {
     this.setState(state => ({ expanded: !state.expanded }));
   };
 
+  truncateText = (text, limit) => {
+    const shortened = text.indexOf(" ", limit);
+    if (shortened === -1) return text;
+    return text.substring(0, shortened);
+  };
+
   render() {
-    const { classes } = this.props;
+    const {
+      classes,
+      movie: { title, poster_path, overview, release_date }
+    } = this.props;
 
     return (
       <Card className={classes.card}>
@@ -66,22 +76,20 @@ class ResultsListItem extends React.Component {
               <MoreVertIcon />
             </IconButton>
           }
-          title="Shrimp and Chorizo Paella"
-          subheader="September 14, 2016"
+          title={title}
+          subheader={moment(`${release_date}`).format("MMMM Do YYYY")}
         />
         <CardMedia
           className={classes.media}
-          image="https://source.unsplash.com/random/food"
+          image={`https://image.tmdb.org/t/p/w500${poster_path}`}
           title="Paella dish"
         />
         <CardContent>
           <Typography component="p">
-            This impressive paella is a perfect party dish and a fun meal to
-            cook together with your guests. Add 1 cup of frozen peas along with
-            the mussels, if you like.
+            {this.truncateText(overview, 90)}
           </Typography>
         </CardContent>
-        <CardActions className={classes.actions} disableActionSpacing>
+        <CardActions className={classes.actions}>
           <IconButton aria-label="Add to favorites">
             <FavoriteIcon />
           </IconButton>
@@ -100,9 +108,7 @@ class ResultsListItem extends React.Component {
           </IconButton>
         </CardActions>
         <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>
-          <CardContent>
-            
-          </CardContent>
+          <CardContent />
         </Collapse>
       </Card>
     );

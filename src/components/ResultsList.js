@@ -18,15 +18,15 @@ const styles = theme => ({
 });
 
 const ResultsList = props => {
-  const { classes, movies} = props;
+  const { classes, movies } = props;
 
   return (
     <React.Fragment>
       <Container className={classes.cardGrid} maxWidth="md">
         <Grid container spacing={4}>
           {movies.map(movie => (
-            <Grid key={movie.id} item xs={12}  sm={6} >
-              <ResultsListItem />
+            <Grid key={movie.id} item xs={12} sm={6}>
+              <ResultsListItem movie={movie} />
             </Grid>
           ))}
         </Grid>
