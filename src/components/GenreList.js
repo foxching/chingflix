@@ -23,7 +23,13 @@ const GenreList = props => {
           {genres &&
             genres.map(({ name, id }) => (
               <Grid item key={id} xs={6} sm={6} md={3}>
-                <Link to={`/${url}/${name}`} style={{ textDecoration: "none" }}>
+                <Link
+                  to={{
+                    pathname: `/${url}/${name}`,
+                    id: `${id}`
+                  }}
+                  style={{ textDecoration: "none" }}
+                >
                   <GenreListItem name={name} />
                 </Link>
               </Grid>
