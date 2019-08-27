@@ -40,14 +40,12 @@ class MainDashboard extends Component {
     const { genres, loading } = this.props;
     return (
       <div>
-        <main>
-          <Action
-            toggle={toggle}
-            handleGetMovieGenres={this.handleGetMovieGenres}
-            handleGetTvGenres={this.handleGetTvGenres}
-          />
-          <GenreList url={url} genres={genres} loading={loading} />
-        </main>
+        <Action
+          toggle={toggle}
+          handleGetMovieGenres={this.handleGetMovieGenres}
+          handleGetTvGenres={this.handleGetTvGenres}
+        />
+        <GenreList url={url} genres={genres} loading={loading} />
       </div>
     );
   }
