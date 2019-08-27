@@ -21,7 +21,7 @@ const Action2 = props => {
   return (
     <div className={classes.heroContent}>
       <Container maxWidth="sm">
-        <Typography variant="h5" align="center" color="initial" paragraph>
+        <Typography variant="h4" align="center" color="initial" paragraph>
           {name}
         </Typography>
 
@@ -32,9 +32,9 @@ const Action2 = props => {
                 onClick={handleGoBack}
                 size="large"
                 variant="contained"
-                color="primary"
+                color="secondary"
               >
-               Go Back
+                Go Back
               </Button>
             </Grid>
           </Grid>

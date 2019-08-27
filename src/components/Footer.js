@@ -6,11 +6,11 @@ import Link from "@material-ui/core/Link";
 function MadeWithLove() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
-      {"Built with love by the "}
-      <Link color="inherit" href="https://material-ui.com/">
-        Material-UI
+      {"Built with love by  "}
+      <Link color="secondary" href="https://material-ui.com/">
+        Rechie Lagria
       </Link>
-      {" team."}
+      
     </Typography>
   );
 }
@@ -29,7 +29,7 @@ export default function Album() {
     <React.Fragment>
       <footer className={classes.footer}>
         <Typography variant="h6" align="center" gutterBottom>
-          Footer
+         ChingDB
         </Typography>
         <Typography
           variant="subtitle1"
@@ -37,7 +37,7 @@ export default function Album() {
           color="textSecondary"
           component="p"
         >
-          Something here to give the footer a purpose!
+         Find your favorites movies and tv shows
         </Typography>
         <MadeWithLove />
       </footer>

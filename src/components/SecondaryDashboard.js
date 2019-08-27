@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { getMoviesbyGenre } from "../actions/movieTvActions";
+import { getMoviesbyGenre, getTvsbyGenre } from "../actions/movieTvActions";
 import Action2 from "./Action2";
 import ResultsList from "./ResultsList";
 
@@ -12,11 +12,12 @@ class SecondaryDashboard extends Component {
     if (this.props.location.url === "movies") {
       this.props.getMoviesbyGenre(this.props.location.id);
     } else {
+      this.props.getTvsbyGenre(this.props.location.id);
     }
   }
 
   render() {
-    const { movies } = this.props;
+    const { queries, loading } = this.props;
     return (
       <div>
         <main>
@@ -24,7 +25,7 @@ class SecondaryDashboard extends Component {
             name={this.props.match.params.name}
             handleGoBack={this.handleGoBack}
           />
-          <ResultsList movies={movies} />
+          <ResultsList queries={queries} loading={loading} />
         </main>
       </div>
     );
@@ -34,12 +35,14 @@ class SecondaryDashboard extends Component {
 const mapState = state => {
   console.log(state);
   return {
-    movies: state.moviesTvs.movies
+    queries: state.moviesTvs.queries,
+    loading: state.moviesTvs.loading
   };
 };
 
 const actions = {
-  getMoviesbyGenre
+  getMoviesbyGenre,
+  getTvsbyGenre
 };
 
 export default connect(

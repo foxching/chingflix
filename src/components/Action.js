@@ -32,7 +32,7 @@ const Action = props => {
                 onClick={handleGetMovieGenres}
                 size="large"
                 variant={toggle ? "contained" : "outlined"}
-                color="primary"
+                color="secondary"
               >
                 Movies
               </Button>
@@ -42,7 +42,7 @@ const Action = props => {
                 onClick={handleGetTvGenres}
                 size="large"
                 variant={toggle ? "outlined" : "contained"}
-                color="primary"
+                color="secondary"
               >
                 Tv Shows
               </Button>

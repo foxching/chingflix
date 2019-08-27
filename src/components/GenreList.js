@@ -4,6 +4,7 @@ import { withStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import Container from "@material-ui/core/Container";
 import GenreListItem from "./GenreListItem";
+import Loading from "./Loading";
 
 const styles = theme => ({
   cardGrid: {
@@ -17,7 +18,8 @@ const GenreList = props => {
 
   return (
     <React.Fragment>
-      {loading && <p style={{ textAlign: "center" }}>Loading Please Wait</p>}
+      <Grid spacing={5} align="center" justify="center" > {loading && <Loading />}</Grid>
+      
       <Container className={classes.cardGrid} maxWidth="md">
         <Grid container spacing={4}>
           {genres &&

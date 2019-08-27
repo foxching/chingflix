@@ -60,24 +60,20 @@ class ResultsListItem extends React.Component {
   render() {
     const {
       classes,
-      movie: { title, poster_path, overview, release_date }
+      query: { title,original_name, poster_path, overview, release_date, first_air_date }
     } = this.props;
 
     return (
       <Card className={classes.card}>
         <CardHeader
-          avatar={
-            <Avatar aria-label="Recipe" className={classes.avatar}>
-              R
-            </Avatar>
-          }
+          
           action={
             <IconButton>
               <MoreVertIcon />
             </IconButton>
           }
-          title={title}
-          subheader={moment(`${release_date}`).format("MMMM Do YYYY")}
+          title={title? title: original_name}
+          subheader={moment(`${release_date? release_date : first_air_date}`).format("MMMM Do YYYY")}
         />
         <CardMedia
           className={classes.media}

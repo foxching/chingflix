@@ -96,6 +96,7 @@ class NavDrawer extends React.Component {
         <CssBaseline />
         <AppBar
           position="fixed"
+          color="secondary"
           className={clsx(classes.appBar, {
             [classes.appBarShift]: open
           })}

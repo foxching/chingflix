@@ -10,7 +10,7 @@ import {
 
 const initialState = {
   genres: [],
-  movies: [],
+  queries: [],
   loading: false
 };
 
@@ -41,19 +41,20 @@ const movieTvReducer = (state = initialState, action) => {
     case GET_MOVIES_BY_GENRE:
       return {
         ...state,
-        movies: action.payload
+        queries: action.payload
       };
 
     case GET_TVS_BY_GENRE:
       return {
-        ...state
+        ...state,
+        queries: action.payload
       };
 
     case CLEAR_RESULTS:
       return {
         ...state,
         genres: [],
-        movies: []
+        queries: []
       };
     default:
       return state;

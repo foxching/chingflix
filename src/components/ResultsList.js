@@ -1,10 +1,9 @@
 import React from "react";
 import { withStyles } from "@material-ui/core/styles";
-//import Paper from "@material-ui/core/Paper";
-//import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
 import ResultsListItem from "./ResultsListItem";
+import Loading from "./Loading";
 //import { Link } from "react-router-dom";
 
 const styles = theme => ({
@@ -18,15 +17,18 @@ const styles = theme => ({
 });
 
 const ResultsList = props => {
-  const { classes, movies } = props;
+  const { classes, queries, loading } = props;
 
   return (
     <React.Fragment>
+      <Grid spacing={5} align="center" justify="center">
+        {loading && <Loading />}
+      </Grid>
       <Container className={classes.cardGrid} maxWidth="md">
         <Grid container spacing={4}>
-          {movies.map(movie => (
-            <Grid key={movie.id} item xs={12} sm={6}>
-              <ResultsListItem movie={movie} />
+          {queries.map(query => (
+            <Grid key={query.id} item xs={12} sm={6}>
+              <ResultsListItem query={query} />
             </Grid>
           ))}
         </Grid>
