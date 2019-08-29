@@ -31,6 +31,7 @@ import AssignmentIcon from "@material-ui/icons/Assignment";
 
 
 import MainDashboard from '../MainDashboard'
+import SecondaryDashboard from '../SecondaryDashboard'
 import Home from "../Home";
 import World from "../World";
 //import { mainListItems, secondaryListItems } from "./listItem";
@@ -219,7 +220,7 @@ class NavDrawer extends React.Component {
               })}
             >
               <Route exact path="/" component={MainDashboard} />
-              <Route exact path="/" component={MainDashboard} />
+              <Route path="/:genre/:name" component={SecondaryDashboard} />
               <Route path="/world" component={World} />
             </main>
           </div>
