@@ -3,6 +3,7 @@ import {
   GET_TV_GENRES,
   GET_MOVIES_BY_GENRE,
   GET_TVS_BY_GENRE,
+  GET_MOVIE_LATEST,
   START_FETCH,
   END_FETCH,
   CLEAR_RESULTS
@@ -45,6 +46,12 @@ const movieTvReducer = (state = initialState, action) => {
       };
 
     case GET_TVS_BY_GENRE:
+      return {
+        ...state,
+        queries: action.payload
+      };
+
+    case GET_MOVIE_LATEST:
       return {
         ...state,
         queries: action.payload

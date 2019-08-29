@@ -4,6 +4,7 @@ import {
   GET_TV_GENRES,
   GET_MOVIES_BY_GENRE,
   GET_TVS_BY_GENRE,
+  GET_MOVIE_LATEST,
   START_FETCH,
   END_FETCH,
   CLEAR_RESULTS
@@ -70,6 +71,23 @@ export const getTvsbyGenre = genreId => {
         `https://api.themoviedb.org/3/discover/tv?api_key=d3de272397bb7105279e2c887f31f0bb&language=en-US&sort_by=popularity.desc&page=1&timezone=America%2FNew_York&with_genres=${genreId}&include_null_first_air_dates=false`
       );
       dispatch({ type: GET_TVS_BY_GENRE, payload: response.data.results });
+      dispatch({ type: END_FETCH });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const getLatestMovie = () => {
+  return async dispatch => {
+    try {
+      dispatch({ type: CLEAR_RESULTS });
+      dispatch({ type: START_FETCH });
+      await delay(1000);
+      const response = await axios.get(
+        `https://api.themoviedb.org/3/movie/now_playing?api_key=d3de272397bb7105279e2c887f31f0bb&language=en-US&page=1`
+      );
+      dispatch({ type: GET_MOVIE_LATEST, payload: response.data.results });
       dispatch({ type: END_FETCH });
     } catch (error) {
       console.log(error);

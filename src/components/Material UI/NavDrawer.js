@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { compose } from "redux";
-import { Router, Route, Link } from "react-router-dom";
+import { Router, Route, Link, Switch } from "react-router-dom";
 import createBrowserHistory from "history/createBrowserHistory";
 import PropTypes from "prop-types";
 import clsx from "clsx";
@@ -29,10 +29,9 @@ import Poll from "@material-ui/icons/Poll";
 import BarChartIcon from "@material-ui/icons/BarChart";
 import AssignmentIcon from "@material-ui/icons/Assignment";
 
-
-import MainDashboard from '../MainDashboard'
-import SecondaryDashboard from '../SecondaryDashboard'
-import Home from "../Home";
+import MainDashboard from "../MainDashboard";
+import SecondaryDashboard from "../SecondaryDashboard";
+import FeedDashboard from "../FeedDashboard";
 import World from "../World";
 //import { mainListItems, secondaryListItems } from "./listItem";
 
@@ -135,7 +134,14 @@ class NavDrawer extends React.Component {
                 >
                   <MenuIcon />
                 </IconButton>
-                <Typography variant="h6" color="inherit" noWrap>
+                <Typography
+                  variant="h6"
+                  color="inherit"
+                  component={Link}
+                  to="/"
+                  style={{ textDecoration: "none" }}
+                  noWrap
+                >
                   CHING DB
                 </Typography>
               </Toolbar>
@@ -164,7 +170,14 @@ class NavDrawer extends React.Component {
               <List>
                 {" "}
                 <ListSubheader inset>Movies</ListSubheader>
-                <ListItem button component={Link} to="/">
+                <ListItem
+                  button
+                  component={Link}
+                  to={{
+                    pathname: "/latest",
+                    subUrl: "Latest Movies"
+                  }}
+                >
                   <ListItemIcon>
                     <Theaters />
                   </ListItemIcon>
@@ -219,9 +232,17 @@ class NavDrawer extends React.Component {
                 [classes.contentShift]: open
               })}
             >
-              <Route exact path="/" component={MainDashboard} />
-              <Route path="/:genre/:name" component={SecondaryDashboard} />
-              <Route path="/world" component={World} />
+              <div>
+                <Switch>
+                  <Route exact path="/" component={MainDashboard} />
+                  <Route
+                    exact
+                    path="/:genre/:name"
+                    component={SecondaryDashboard}
+                  />
+                  <Route path="/latest" component={FeedDashboard} />
+                </Switch>
+              </div>
             </main>
           </div>
         </Router>

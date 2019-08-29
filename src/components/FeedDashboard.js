@@ -1,19 +1,15 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { getMoviesbyGenre, getTvsbyGenre } from "../actions/movieTvActions";
+import { getLatestMovie } from "../actions/movieTvActions";
 import Action2 from "./Action2";
 import ResultsList from "./ResultsList";
 
-class SecondaryDashboard extends Component {
+class FeedDashboard extends Component {
   handleGoBack = () => {
     this.props.history.goBack();
   };
   componentDidMount() {
-    if (this.props.location.url === "movies") {
-      this.props.getMoviesbyGenre(this.props.location.id);
-    } else {
-      this.props.getTvsbyGenre(this.props.location.id);
-    }
+    this.props.getLatestMovie();
   }
 
   render() {
@@ -22,7 +18,7 @@ class SecondaryDashboard extends Component {
       <div>
         <main>
           <Action2
-            name={this.props.match.params.name}
+            name={this.props.location.subUrl}
             handleGoBack={this.handleGoBack}
           />
           <ResultsList queries={queries} loading={loading} />
@@ -40,11 +36,10 @@ const mapState = state => {
 };
 
 const actions = {
-  getMoviesbyGenre,
-  getTvsbyGenre
+  getLatestMovie
 };
 
 export default connect(
   mapState,
   actions
-)(SecondaryDashboard);
+)(FeedDashboard);

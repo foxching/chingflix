@@ -5,3 +5,4 @@ export const END_FETCH = "END_FETCH";
 export const CLEAR_RESULTS = " CLEAR_RESULTS";
 export const GET_MOVIES_BY_GENRE = "GET_MOVIES_BY_GENRE";
 export const GET_TVS_BY_GENRE = "GET_TVS_BY_GENRE";
+export const GET_MOVIE_LATEST = "GET_MOVIE_LATEST";

@@ -8,8 +8,7 @@ import Typography from "@material-ui/core/Typography";
 
 const styles = theme => ({
   heroContent: {
-    backgroundColor: theme.palette.background.paper,
-    padding: theme.spacing(3, 0, 6)
+    padding: theme.spacing(8, 2, 6)
   },
   heroButtons: {
     marginTop: theme.spacing(4)
