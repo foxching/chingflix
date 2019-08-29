@@ -21,7 +21,7 @@ const ResultsList = props => {
 
   return (
     <React.Fragment>
-      <Grid spacing={5} align="center" justify="center">
+      <Grid container spacing={5} align="center" justify="center">
         {loading && <Loading />}
       </Grid>
       <Container className={classes.cardGrid} maxWidth="md">

@@ -22,8 +22,8 @@ class SecondaryDashboard extends Component {
       <div>
         <main>
           <Action2
-            name={this.props.match.params.name}
-            handleGoBack={this.handleGoBack}
+            //name={this.props.match.params.name}
+            //handleGoBack={this.handleGoBack}
           />
           <ResultsList queries={queries} loading={loading} />
         </main>

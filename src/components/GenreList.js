@@ -18,8 +18,8 @@ const GenreList = props => {
 
   return (
     <React.Fragment>
-      <Grid spacing={5} align="center" justify="center" > {loading && <Loading />}</Grid>
-      
+      <Grid align="center"> {loading && <Loading />}</Grid>
+
       <Container className={classes.cardGrid} maxWidth="md">
         <Grid container spacing={4}>
           {genres &&
