@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { getLatestMovie } from "../actions/movieTvActions";
-import Action2 from "./Action2";
+import Action from "./Action";
 import ResultsList from "./ResultsList";
 
 class FeedDashboard extends Component {
@@ -17,7 +17,7 @@ class FeedDashboard extends Component {
     return (
       <div>
         <main>
-          <Action2
+          <Action
             name={this.props.location.subUrl}
             handleGoBack={this.handleGoBack}
           />

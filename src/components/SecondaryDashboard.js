@@ -1,7 +1,12 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { getMoviesbyGenre, getTvsbyGenre } from "../actions/movieTvActions";
-import Action2 from "./Action2";
+import {
+  getMoviesbyGenre,
+  getTvsbyGenre,
+  getLatestMovie
+} from "../actions/movieTvActions";
+import Action from "./Action";
+//import Action2 from "./Action2";
 import ResultsList from "./ResultsList";
 
 class SecondaryDashboard extends Component {
@@ -21,8 +26,12 @@ class SecondaryDashboard extends Component {
     return (
       <div>
         <main>
-          <Action2
-            name={this.props.match.params.name}
+          <Action
+            name={
+              this.props.match.params.name
+                ? this.props.match.params.name
+                : this.props.location.subUrl
+            }
             handleGoBack={this.handleGoBack}
           />
           <ResultsList queries={queries} loading={loading} />
@@ -41,7 +50,8 @@ const mapState = state => {
 
 const actions = {
   getMoviesbyGenre,
-  getTvsbyGenre
+  getTvsbyGenre,
+  getLatestMovie
 };
 
 export default connect(

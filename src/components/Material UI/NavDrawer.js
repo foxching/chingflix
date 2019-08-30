@@ -175,6 +175,7 @@ class NavDrawer extends React.Component {
                   component={Link}
                   to={{
                     pathname: "/latest",
+                    url: "latest",
                     subUrl: "Latest Movies"
                   }}
                 >
@@ -235,12 +236,12 @@ class NavDrawer extends React.Component {
               <div>
                 <Switch>
                   <Route exact path="/" component={MainDashboard} />
+                  <Route exact path="/latest" component={FeedDashboard} />
                   <Route
-                    exact
+                    strict
                     path="/:genre/:name"
                     component={SecondaryDashboard}
                   />
-                  <Route path="/latest" component={FeedDashboard} />
                 </Switch>
               </div>
             </main>
