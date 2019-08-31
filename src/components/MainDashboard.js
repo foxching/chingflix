@@ -14,7 +14,7 @@ class MainDashboard extends Component {
     url: "movies"
   };
 
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     this.props.getMoviesGenres();
     this.setState({
       toggle: true

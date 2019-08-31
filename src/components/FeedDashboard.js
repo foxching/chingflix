@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { getLatestMovie } from "../actions/movieTvActions";
+import { getLatestMovie, getUpcomingMovie } from "../actions/movieTvActions";
 import Action from "./Action";
 import ResultsList from "./ResultsList";
 
@@ -8,9 +8,18 @@ class FeedDashboard extends Component {
   handleGoBack = () => {
     this.props.history.goBack();
   };
-  componentDidMount() {
-    this.props.getLatestMovie();
-  }
+  // componentDidMount() {
+  //   this.loadData();
+  // }
+
+  // loadData = () => {
+  //   if (this.props.location.url === "latest") {
+  //     this.props.getLatestMovie();
+  //   }
+  //   if (this.props.location.url === "upcoming") {
+  //     this.props.getUpcomingMovie();
+  //   }
+  // };
 
   render() {
     const { queries, loading } = this.props;
@@ -36,7 +45,8 @@ const mapState = state => {
 };
 
 const actions = {
-  getLatestMovie
+  getLatestMovie,
+  getUpcomingMovie
 };
 
 export default connect(

@@ -5,6 +5,7 @@ import {
   GET_MOVIES_BY_GENRE,
   GET_TVS_BY_GENRE,
   GET_MOVIE_LATEST,
+  GET_MOVIE_UPCOMING,
   START_FETCH,
   END_FETCH,
   CLEAR_RESULTS
@@ -85,7 +86,7 @@ export const getLatestMovie = () => {
       dispatch({ type: START_FETCH });
       await delay(1000);
       const response = await axios.get(
-        `https://api.themoviedb.org/3/movie/now_playing?api_key=d3de272397bb7105279e2c887f31f0bb&language=en-US&page=1`
+        `https://api.themoviedb.org/3/movie/now_playing?api_key=d3de272397bb7105279e2c887f31f0bb&language=en-US&page=1&region=PH%2CUS`
       );
       dispatch({ type: GET_MOVIE_LATEST, payload: response.data.results });
       dispatch({ type: END_FETCH });
@@ -94,7 +95,20 @@ export const getLatestMovie = () => {
     }
   };
 };
-
+export const getUpcomingMovie = () => {
+  return async dispatch => {
+    try {
+      dispatch({ type: CLEAR_RESULTS });
+      dispatch({ type: START_FETCH });
+      await delay(1000);
+      const response = await axios.get(
+        `https://api.themoviedb.org/3/movie/upcoming?api_key=d3de272397bb7105279e2c887f31f0bb&language=en-US&page=1&region=PH`
+      );
+      dispatch({ type: GET_MOVIE_UPCOMING, payload: response.data.results });
+      dispatch({ type: END_FETCH });
+    } catch (error) {}
+  };
+};
 export const clearResults = () => {
   return dispatch => {
     dispatch({ type: CLEAR_RESULTS });

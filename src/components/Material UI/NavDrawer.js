@@ -176,31 +176,33 @@ class NavDrawer extends React.Component {
                   to={{
                     pathname: "/latest",
                     url: "latest",
-                    subUrl: "Latest Movies"
+                    subUrl: "Now Playing"
                   }}
                 >
                   <ListItemIcon>
                     <Theaters />
                   </ListItemIcon>
-                  <ListItemText primary="Latest" />
+                  <ListItemText primary="Now Playing" />
                 </ListItem>
-                <ListItem button component={Link} to="/world">
+                <ListItem
+                  button
+                  component={Link}
+                  to={{
+                    pathname: "/upcoming",
+                    url: "upcoming",
+                    subUrl: "Upcoming Movies"
+                  }}
+                >
                   <ListItemIcon>
                     <Movie />
                   </ListItemIcon>
-                  <ListItemText primary="Now Playing" />
+                  <ListItemText primary="Upcoming" />
                 </ListItem>
                 <ListItem button>
                   <ListItemIcon>
                     <Poll />
                   </ListItemIcon>
                   <ListItemText primary="Popular" />
-                </ListItem>
-                <ListItem button>
-                  <ListItemIcon>
-                    <BarChartIcon />
-                  </ListItemIcon>
-                  <ListItemText primary="Upcoming" />
                 </ListItem>
               </List>
 
@@ -237,6 +239,7 @@ class NavDrawer extends React.Component {
                 <Switch>
                   <Route exact path="/" component={MainDashboard} />
                   <Route exact path="/latest" component={FeedDashboard} />
+                  <Route exact path="/upcoming" component={FeedDashboard} />
                   <Route
                     strict
                     path="/:genre/:name"
