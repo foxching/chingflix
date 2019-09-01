@@ -8,19 +8,29 @@ class FeedDashboard extends Component {
   handleGoBack = () => {
     this.props.history.goBack();
   };
-  // componentDidMount() {
-  //   this.loadData();
-  // }
 
-  // loadData = () => {
-  //   if (this.props.location.url === "latest") {
-  //     this.props.getLatestMovie();
-  //   }
-  //   if (this.props.location.url === "upcoming") {
-  //     this.props.getUpcomingMovie();
-  //   }
-  // };
+  componentDidMount() {
+    this.loadData(this.props.location.url);
+  }
 
+  UNSAFE_componentWillReceiveProps(nextProps) {
+    if (nextProps.location.url !== this.props.location.url) {
+      this.loadData(nextProps.location.url);
+    }
+  }
+
+  loadData = url => {
+    switch (url) {
+      case "latest":
+        this.props.getLatestMovie();
+        break;
+      case "upcoming":
+        this.props.getUpcomingMovie();
+        break;
+      default:
+        return {};
+    }
+  };
   render() {
     const { queries, loading } = this.props;
     return (
