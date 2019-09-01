@@ -3,23 +3,45 @@ import { connect } from "react-redux";
 import {
   getMoviesbyGenre,
   getTvsbyGenre,
-  getLatestMovie
+  getLatestMovie,
+  getUpcomingMovie
 } from "../actions/movieTvActions";
 import Action from "./Action";
-//import Action2 from "./Action2";
 import ResultsList from "./ResultsList";
 
 class SecondaryDashboard extends Component {
   handleGoBack = () => {
-    this.props.history.goBack();
+    this.props.history.goBack("/");
   };
-  componentDidMount() {
-    if (this.props.location.url === "movies") {
-      this.props.getMoviesbyGenre(this.props.location.id);
-    } else {
-      this.props.getTvsbyGenre(this.props.location.id);
+
+  UNSAFE_componentWillMount() {
+    this.loadData(this.props.location.url);
+  }
+
+  UNSAFE_componentWillReceiveProps(nextProps) {
+    if (nextProps.location.url !== this.props.location.url) {
+      this.loadData(nextProps.location.url);
     }
   }
+
+  loadData = url => {
+    switch (url) {
+      case "movies":
+        this.props.getMoviesbyGenre(this.props.location.id);
+        break;
+      case "tvs":
+        this.props.getTvsbyGenre(this.props.location.id);
+        break;
+      case "latest":
+        this.props.getLatestMovie();
+        break;
+      case "upcoming":
+        this.props.getUpcomingMovie();
+        break;
+      default:
+        return {};
+    }
+  };
 
   render() {
     const { queries, loading } = this.props;
@@ -51,7 +73,8 @@ const mapState = state => {
 const actions = {
   getMoviesbyGenre,
   getTvsbyGenre,
-  getLatestMovie
+  getLatestMovie,
+  getUpcomingMovie
 };
 
 export default connect(

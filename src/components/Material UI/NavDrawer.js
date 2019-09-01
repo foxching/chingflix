@@ -238,8 +238,12 @@ class NavDrawer extends React.Component {
               <div>
                 <Switch>
                   <Route exact path="/" component={MainDashboard} />
-                  <Route exact path="/latest" component={FeedDashboard} />
-                  <Route exact path="/upcoming" component={FeedDashboard} />
+                  <Route exact path="/latest" component={SecondaryDashboard} />
+                  <Route
+                    exact
+                    path="/upcoming"
+                    component={SecondaryDashboard}
+                  />
                   <Route
                     strict
                     path="/:genre/:name"
