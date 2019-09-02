@@ -7,6 +7,9 @@ import {
   GET_MOVIE_LATEST,
   GET_MOVIE_UPCOMING,
   GET_TRENDING_MOVIES,
+  GET_ON_AIR_TV_SHOWS,
+  GET_POPULAR_TV_SHOWS,
+  GET_TOP_RATED_SHOWS,
   START_FETCH,
   END_FETCH,
   CLEAR_RESULTS
@@ -129,12 +132,57 @@ export const getTrendingMovies = () => {
     }
   };
 };
-export const clearResults = () => {
-  return dispatch => {
-    dispatch({ type: CLEAR_RESULTS });
+
+export const getOnAirTvShows = () => {
+  return async dispatch => {
+    try {
+      dispatch({ type: CLEAR_RESULTS });
+      dispatch({ type: START_FETCH });
+      await delay(1000);
+      const response = await axios.get(
+        `https://api.themoviedb.org/3/tv/airing_today?api_key=d3de272397bb7105279e2c887f31f0bb&language=en-US&page=1`
+      );
+      dispatch({ type: GET_ON_AIR_TV_SHOWS, payload: response.data.results });
+      dispatch({ type: END_FETCH });
+    } catch (error) {
+      console.log(error);
+    }
   };
 };
 
+export const getPopularTvShows = () => {
+  return async dispatch => {
+    try {
+      dispatch({ type: CLEAR_RESULTS });
+      dispatch({ type: START_FETCH });
+      await delay(1000);
+      const response = await axios.get(
+        `https://api.themoviedb.org/3/tv/popular?api_key=d3de272397bb7105279e2c887f31f0bb&language=en-US&page=1`
+      );
+      dispatch({ type: GET_POPULAR_TV_SHOWS, payload: response.data.results });
+      dispatch({ type: END_FETCH });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const getTopRatedShows = () => {
+  return async dispatch => {
+    try {
+      dispatch({ type: CLEAR_RESULTS });
+      dispatch({ type: START_FETCH });
+      await delay(1000);
+      const response = await axios.get(
+        "https://api.themoviedb.org/3/tv/top_rated?api_key=d3de272397bb7105279e2c887f31f0bb&language=en-US&page=1"
+      );
+      dispatch({ type: GET_TOP_RATED_SHOWS, payload: response.data.results });
+      dispatch({ type: END_FETCH });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
 const delay = ms => {
   return new Promise(resolve => setTimeout(resolve, ms));
 };

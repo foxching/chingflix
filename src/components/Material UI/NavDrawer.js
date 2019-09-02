@@ -240,8 +240,8 @@ class NavDrawer extends React.Component {
                   button
                   component={Link}
                   to={{
-                    pathname: "/latest",
-                    url: "latest",
+                    pathname: "/movies/now-playing",
+                    url: "now-playing",
                     subUrl: "Now Playing"
                   }}
                 >
@@ -254,7 +254,7 @@ class NavDrawer extends React.Component {
                   button
                   component={Link}
                   to={{
-                    pathname: "/upcoming",
+                    pathname: "/movies/upcoming",
                     url: "upcoming",
                     subUrl: "Upcoming Movies"
                   }}
@@ -268,7 +268,7 @@ class NavDrawer extends React.Component {
                   button
                   component={Link}
                   to={{
-                    pathname: "/popular_movies",
+                    pathname: "/movies/popular",
                     url: "popular_movies",
                     subUrl: "Popular Movies"
                   }}
@@ -284,19 +284,43 @@ class NavDrawer extends React.Component {
 
               <List>
                 <ListSubheader inset>Televisions</ListSubheader>
-                <ListItem button>
+                <ListItem
+                  button
+                  component={Link}
+                  to={{
+                    pathname: "/tvs/airing-today",
+                    url: "airing-today",
+                    subUrl: "On Air Shows"
+                  }}
+                >
                   <ListItemIcon>
                     <LiveTv />
                   </ListItemIcon>
                   <ListItemText primary="On Air" />
                 </ListItem>
-                <ListItem button>
+                <ListItem
+                  button
+                  component={Link}
+                  to={{
+                    pathname: "/tvs/popular",
+                    url: "popular_shows",
+                    subUrl: "Popular TV Shows"
+                  }}
+                >
                   <ListItemIcon>
                     <OndemandVideo />
                   </ListItemIcon>
                   <ListItemText primary="Popular" />
                 </ListItem>
-                <ListItem button>
+                <ListItem
+                  button
+                  component={Link}
+                  to={{
+                    pathname: "/tvs/top-rated",
+                    url: "top_rated_shows",
+                    subUrl: "Top Rated TV Shows"
+                  }}
+                >
                   <ListItemIcon>
                     <TrendingUp />
                   </ListItemIcon>
@@ -312,15 +336,35 @@ class NavDrawer extends React.Component {
               <div>
                 <Switch>
                   <Route exact path="/" component={MainDashboard} />
-                  <Route exact path="/latest" component={SecondaryDashboard} />
                   <Route
                     exact
-                    path="/upcoming"
+                    path="/movies/now-playing"
                     component={SecondaryDashboard}
                   />
                   <Route
                     exact
-                    path="/popular_movies"
+                    path="/movies/upcoming"
+                    component={SecondaryDashboard}
+                  />
+                  <Route
+                    exact
+                    path="/movies/popular"
+                    component={SecondaryDashboard}
+                  />
+                  />
+                  <Route
+                    exact
+                    path="/tvs/airing-today"
+                    component={SecondaryDashboard}
+                  />
+                  <Route
+                    exact
+                    path="/tvs/popular"
+                    component={SecondaryDashboard}
+                  />
+                  <Route
+                    exact
+                    path="/tvs/top-rated"
                     component={SecondaryDashboard}
                   />
                   <Route

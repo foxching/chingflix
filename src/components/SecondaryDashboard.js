@@ -5,7 +5,10 @@ import {
   getTvsbyGenre,
   getLatestMovies,
   getUpcomingMovies,
-  getTrendingMovies
+  getTrendingMovies,
+  getOnAirTvShows,
+  getPopularTvShows,
+  getTopRatedShows
 } from "../actions/movieTvActions";
 import Action from "./Action";
 import ResultsList from "./ResultsList";
@@ -33,7 +36,7 @@ class SecondaryDashboard extends Component {
       case "tvs":
         this.props.getTvsbyGenre(this.props.location.id);
         break;
-      case "latest":
+      case "now-playing":
         this.props.getLatestMovies();
         break;
       case "upcoming":
@@ -41,6 +44,15 @@ class SecondaryDashboard extends Component {
         break;
       case "popular_movies":
         this.props.getTrendingMovies();
+        break;
+      case "airing-today":
+        this.props.getOnAirTvShows();
+        break;
+      case "popular_shows":
+        this.props.getPopularTvShows();
+        break;
+      case "top_rated_shows":
+        this.props.getTopRatedShows();
         break;
       default:
         return {};
@@ -79,7 +91,10 @@ const actions = {
   getTvsbyGenre,
   getLatestMovies,
   getUpcomingMovies,
-  getTrendingMovies
+  getTrendingMovies,
+  getOnAirTvShows,
+  getPopularTvShows,
+  getTopRatedShows
 };
 
 export default connect(

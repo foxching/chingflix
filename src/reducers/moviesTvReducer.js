@@ -6,6 +6,9 @@ import {
   GET_MOVIE_LATEST,
   GET_MOVIE_UPCOMING,
   GET_TRENDING_MOVIES,
+  GET_ON_AIR_TV_SHOWS,
+  GET_POPULAR_TV_SHOWS,
+  GET_TOP_RATED_SHOWS,
   START_FETCH,
   END_FETCH,
   CLEAR_RESULTS
@@ -64,6 +67,21 @@ const movieTvReducer = (state = initialState, action) => {
         queries: action.payload
       };
     case GET_TRENDING_MOVIES:
+      return {
+        ...state,
+        queries: action.payload
+      };
+    case GET_ON_AIR_TV_SHOWS:
+      return {
+        ...state,
+        queries: action.payload
+      };
+    case GET_POPULAR_TV_SHOWS:
+      return {
+        ...state,
+        queries: action.payload
+      };
+    case GET_TOP_RATED_SHOWS:
       return {
         ...state,
         queries: action.payload
