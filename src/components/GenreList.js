@@ -17,7 +17,7 @@ const GenreList = props => {
   const { classes, genres, loading, url } = props;
 
   return (
-    <React.Fragment>
+    <div>
       <Grid align="center"> {loading && <Loading />}</Grid>
 
       <Container className={classes.cardGrid} maxWidth="md">
@@ -39,7 +39,7 @@ const GenreList = props => {
             ))}
         </Grid>
       </Container>
-    </React.Fragment>
+    </div>
   );
 };
 
