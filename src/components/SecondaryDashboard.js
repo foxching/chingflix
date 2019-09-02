@@ -3,8 +3,9 @@ import { connect } from "react-redux";
 import {
   getMoviesbyGenre,
   getTvsbyGenre,
-  getLatestMovie,
-  getUpcomingMovie
+  getLatestMovies,
+  getUpcomingMovies,
+  getTrendingMovies
 } from "../actions/movieTvActions";
 import Action from "./Action";
 import ResultsList from "./ResultsList";
@@ -33,10 +34,13 @@ class SecondaryDashboard extends Component {
         this.props.getTvsbyGenre(this.props.location.id);
         break;
       case "latest":
-        this.props.getLatestMovie();
+        this.props.getLatestMovies();
         break;
       case "upcoming":
-        this.props.getUpcomingMovie();
+        this.props.getUpcomingMovies();
+        break;
+      case "popular_movies":
+        this.props.getTrendingMovies();
         break;
       default:
         return {};
@@ -73,8 +77,9 @@ const mapState = state => {
 const actions = {
   getMoviesbyGenre,
   getTvsbyGenre,
-  getLatestMovie,
-  getUpcomingMovie
+  getLatestMovies,
+  getUpcomingMovies,
+  getTrendingMovies
 };
 
 export default connect(

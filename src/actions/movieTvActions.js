@@ -6,6 +6,7 @@ import {
   GET_TVS_BY_GENRE,
   GET_MOVIE_LATEST,
   GET_MOVIE_UPCOMING,
+  GET_TRENDING_MOVIES,
   START_FETCH,
   END_FETCH,
   CLEAR_RESULTS
@@ -79,14 +80,14 @@ export const getTvsbyGenre = genreId => {
   };
 };
 
-export const getLatestMovie = () => {
+export const getLatestMovies = () => {
   return async dispatch => {
     try {
       dispatch({ type: CLEAR_RESULTS });
       dispatch({ type: START_FETCH });
       await delay(1000);
       const response = await axios.get(
-        `https://api.themoviedb.org/3/movie/now_playing?api_key=d3de272397bb7105279e2c887f31f0bb&language=en-US&page=1&region=PH%2CUS`
+        `https://api.themoviedb.org/3/movie/now_playing?api_key=d3de272397bb7105279e2c887f31f0bb&language=en-US&page=1&region=US`
       );
       dispatch({ type: GET_MOVIE_LATEST, payload: response.data.results });
       dispatch({ type: END_FETCH });
@@ -95,18 +96,37 @@ export const getLatestMovie = () => {
     }
   };
 };
-export const getUpcomingMovie = () => {
+export const getUpcomingMovies = () => {
   return async dispatch => {
     try {
       dispatch({ type: CLEAR_RESULTS });
       dispatch({ type: START_FETCH });
       await delay(1000);
       const response = await axios.get(
-        `https://api.themoviedb.org/3/movie/upcoming?api_key=d3de272397bb7105279e2c887f31f0bb&language=en-US&page=1&region=PH`
+        `https://api.themoviedb.org/3/movie/upcoming?api_key=d3de272397bb7105279e2c887f31f0bb&language=en-US&page=1&region=US`
       );
       dispatch({ type: GET_MOVIE_UPCOMING, payload: response.data.results });
       dispatch({ type: END_FETCH });
-    } catch (error) {}
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
+
+export const getTrendingMovies = () => {
+  return async dispatch => {
+    try {
+      dispatch({ type: CLEAR_RESULTS });
+      dispatch({ type: START_FETCH });
+      await delay(1000);
+      const response = await axios.get(
+        `https://api.themoviedb.org/3/trending/movie/week?api_key=d3de272397bb7105279e2c887f31f0bb`
+      );
+      dispatch({ type: GET_TRENDING_MOVIES, payload: response.data.results });
+      dispatch({ type: END_FETCH });
+    } catch (error) {
+      console.log(error);
+    }
   };
 };
 export const clearResults = () => {

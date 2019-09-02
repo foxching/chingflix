@@ -26,7 +26,11 @@ import ListSubheader from "@material-ui/core/ListSubheader";
 import Theaters from "@material-ui/icons/Theaters";
 import Movie from "@material-ui/icons/Movie";
 import Poll from "@material-ui/icons/Poll";
-import AssignmentIcon from "@material-ui/icons/Assignment";
+import Tv from "@material-ui/icons/Tv";
+import TrendingUp from "@material-ui/icons/TrendingUp";
+import AvTimer from "@material-ui/icons/AvTimer";
+import LiveTv from "@material-ui/icons/LiveTv";
+import OndemandVideo from "@material-ui/icons/OndemandVideo";
 
 import MainDashboard from "../MainDashboard";
 import SecondaryDashboard from "../SecondaryDashboard";
@@ -256,11 +260,19 @@ class NavDrawer extends React.Component {
                   }}
                 >
                   <ListItemIcon>
-                    <Movie />
+                    <AvTimer />
                   </ListItemIcon>
                   <ListItemText primary="Upcoming" />
                 </ListItem>
-                <ListItem button>
+                <ListItem
+                  button
+                  component={Link}
+                  to={{
+                    pathname: "/popular_movies",
+                    url: "popular_movies",
+                    subUrl: "Popular Movies"
+                  }}
+                >
                   <ListItemIcon>
                     <Poll />
                   </ListItemIcon>
@@ -274,19 +286,19 @@ class NavDrawer extends React.Component {
                 <ListSubheader inset>Televisions</ListSubheader>
                 <ListItem button>
                   <ListItemIcon>
-                    <AssignmentIcon />
-                  </ListItemIcon>
-                  <ListItemText primary="Latest" />
-                </ListItem>
-                <ListItem button>
-                  <ListItemIcon>
-                    <AssignmentIcon />
+                    <LiveTv />
                   </ListItemIcon>
                   <ListItemText primary="On Air" />
                 </ListItem>
                 <ListItem button>
                   <ListItemIcon>
-                    <AssignmentIcon />
+                    <OndemandVideo />
+                  </ListItemIcon>
+                  <ListItemText primary="Popular" />
+                </ListItem>
+                <ListItem button>
+                  <ListItemIcon>
+                    <TrendingUp />
                   </ListItemIcon>
                   <ListItemText primary="Top Rated" />
                 </ListItem>
@@ -304,6 +316,11 @@ class NavDrawer extends React.Component {
                   <Route
                     exact
                     path="/upcoming"
+                    component={SecondaryDashboard}
+                  />
+                  <Route
+                    exact
+                    path="/popular_movies"
                     component={SecondaryDashboard}
                   />
                   <Route
