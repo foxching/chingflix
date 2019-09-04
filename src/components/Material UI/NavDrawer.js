@@ -150,7 +150,8 @@ const history = createBrowserHistory();
 
 class NavDrawer extends React.Component {
   state = {
-    open: false
+    open: false,
+    search: ""
   };
 
   handleDrawerOpen = () => {
@@ -160,7 +161,9 @@ class NavDrawer extends React.Component {
   handleDrawerClose = () => {
     this.setState({ open: false });
   };
-
+  handleChange = e => {
+    this.setState({ search: e.target.value });
+  };
   render() {
     const { classes, theme } = this.props;
     const { open } = this.state;
@@ -204,6 +207,8 @@ class NavDrawer extends React.Component {
                   </div>
                   <Input
                     placeholder="Search here... "
+                    value={this.state.search}
+                    onChange={this.handleChange}
                     disableUnderline
                     classes={{
                       root: classes.inputRoot,
@@ -336,42 +341,7 @@ class NavDrawer extends React.Component {
               <div>
                 <Switch>
                   <Route exact path="/" component={MainDashboard} />
-                  <Route
-                    exact
-                    path="/movies/now-playing"
-                    component={SecondaryDashboard}
-                  />
-                  <Route
-                    exact
-                    path="/movies/upcoming"
-                    component={SecondaryDashboard}
-                  />
-                  <Route
-                    exact
-                    path="/movies/popular"
-                    component={SecondaryDashboard}
-                  />
-                  />
-                  <Route
-                    exact
-                    path="/tvs/airing-today"
-                    component={SecondaryDashboard}
-                  />
-                  <Route
-                    exact
-                    path="/tvs/popular"
-                    component={SecondaryDashboard}
-                  />
-                  <Route
-                    exact
-                    path="/tvs/top-rated"
-                    component={SecondaryDashboard}
-                  />
-                  <Route
-                    strict
-                    path="/:genre/:name"
-                    component={SecondaryDashboard}
-                  />
+                  <Route path="/:genre/:name" component={SecondaryDashboard} />
                 </Switch>
               </div>
             </main>
