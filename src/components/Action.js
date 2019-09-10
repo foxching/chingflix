@@ -22,7 +22,8 @@ const Action = props => {
     handleGetMovieGenres,
     handleGetTvGenres,
     handleGoBack,
-    name
+    name,
+    fromMain
   } = props;
   return (
     <div className={classes.heroContent}>
@@ -58,14 +59,16 @@ const Action = props => {
               </React.Fragment>
             ) : (
               <Grid item>
-                <Button
-                  onClick={handleGoBack}
-                  size="large"
-                  variant="contained"
-                  color="secondary"
-                >
-                  Go Back
-                </Button>
+                {handleGoBack && (
+                  <Button
+                    onClick={handleGoBack}
+                    size="large"
+                    variant="contained"
+                    color="secondary"
+                  >
+                    Go Back
+                  </Button>
+                )}
               </Grid>
             )}
           </Grid>

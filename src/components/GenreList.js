@@ -29,7 +29,8 @@ const GenreList = props => {
                   to={{
                     pathname: `/${url}/${name}`,
                     id: `${id}`,
-                    url: `${url}`
+                    url: `${url}`,
+                    subUrl: `${name}`
                   }}
                   style={{ textDecoration: "none" }}
                 >
