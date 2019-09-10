@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import GenreList from "./GenreList";
 import Action from "./Action";
+//import { Redirect } from "react-router-dom";
 import {
   getMoviesGenres,
   getTvsGenres,
@@ -35,6 +36,7 @@ class MainDashboard extends Component {
       url: "tvs"
     }));
   };
+
   render() {
     const { toggle, url } = this.state;
     const { genres, loading } = this.props;

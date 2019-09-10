@@ -60,29 +60,49 @@ class ResultsListItem extends React.Component {
   render() {
     const {
       classes,
-      query: { title,original_name, poster_path, overview, release_date, first_air_date }
+      query: {
+        media_type,
+        title,
+        original_name,
+        name,
+        poster_path,
+        profile_path,
+        overview,
+        release_date,
+        first_air_date
+      }
     } = this.props;
+    const titleName = `${title ? title : original_name}`;
 
     return (
       <Card className={classes.card}>
         <CardHeader
-          
           action={
             <IconButton>
               <MoreVertIcon />
             </IconButton>
           }
-          title={title? title: original_name}
-          subheader={moment(`${release_date? release_date : first_air_date}`).format("MMMM Do YYYY")}
+          title={media_type === "person" ? name : titleName}
+          subheader={
+            media_type === "person"
+              ? ""
+              : moment(
+                  `${release_date ? release_date : first_air_date}`
+                ).format("MMMM Do YYYY")
+          }
         />
         <CardMedia
           className={classes.media}
-          image={`https://image.tmdb.org/t/p/w500${poster_path}`}
+          image={`https://image.tmdb.org/t/p/w500${
+            media_type === "person" ? profile_path : poster_path
+          }`}
           title="Paella dish"
         />
         <CardContent>
           <Typography component="p">
-            {this.truncateText(overview, 90)}
+            {media_type === "person"
+              ? "Person Details"
+              : this.truncateText(overview && overview, 90)}
           </Typography>
         </CardContent>
         <CardActions className={classes.actions}>

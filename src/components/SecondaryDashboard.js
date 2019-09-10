@@ -10,6 +10,7 @@ import {
   getPopularTvShows,
   getTopRatedShows
 } from "../actions/movieTvActions";
+import { rejectRedirect } from "../actions/setAction";
 import Action from "./Action";
 import ResultsList from "./ResultsList";
 
@@ -20,6 +21,7 @@ class SecondaryDashboard extends Component {
 
   UNSAFE_componentWillMount() {
     this.loadData(this.props.location.url);
+    this.props.rejectRedirect();
   }
 
   UNSAFE_componentWillReceiveProps(nextProps) {
@@ -90,7 +92,8 @@ const actions = {
   getTrendingMovies,
   getOnAirTvShows,
   getPopularTvShows,
-  getTopRatedShows
+  getTopRatedShows,
+  rejectRedirect
 };
 
 export default connect(
