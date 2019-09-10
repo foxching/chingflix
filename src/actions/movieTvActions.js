@@ -29,7 +29,7 @@ export const getMoviesGenres = () => {
       dispatch({ type: GET_MOVIE_GENRES, payload: response.data.genres });
       dispatch({ type: END_FETCH });
     } catch (error) {
-      console.log(error);
+      dispatch({ type: GET_ERROR });
     }
   };
 };
@@ -46,7 +46,7 @@ export const getTvsGenres = () => {
       dispatch({ type: GET_TV_GENRES, payload: response.data.genres });
       dispatch({ type: END_FETCH });
     } catch (error) {
-      console.log(error);
+      dispatch({ type: GET_ERROR });
     }
   };
 };
@@ -63,7 +63,7 @@ export const getMoviesbyGenre = genreId => {
       dispatch({ type: GET_MOVIES_BY_GENRE, payload: response.data.results });
       dispatch({ type: END_FETCH });
     } catch (error) {
-      console.log(error);
+      dispatch({ type: GET_ERROR });
     }
   };
 };
@@ -80,7 +80,7 @@ export const getTvsbyGenre = genreId => {
       dispatch({ type: GET_TVS_BY_GENRE, payload: response.data.results });
       dispatch({ type: END_FETCH });
     } catch (error) {
-      console.log(error);
+      dispatch({ type: GET_ERROR });
     }
   };
 };
@@ -97,7 +97,7 @@ export const getLatestMovies = () => {
       dispatch({ type: GET_MOVIE_LATEST, payload: response.data.results });
       dispatch({ type: END_FETCH });
     } catch (error) {
-      console.log(error);
+      dispatch({ type: GET_ERROR });
     }
   };
 };
@@ -113,7 +113,7 @@ export const getUpcomingMovies = () => {
       dispatch({ type: GET_MOVIE_UPCOMING, payload: response.data.results });
       dispatch({ type: END_FETCH });
     } catch (error) {
-      console.log(error);
+      dispatch({ type: GET_ERROR });
     }
   };
 };
@@ -130,7 +130,7 @@ export const getTrendingMovies = () => {
       dispatch({ type: GET_TRENDING_MOVIES, payload: response.data.results });
       dispatch({ type: END_FETCH });
     } catch (error) {
-      console.log(error);
+      dispatch({ type: GET_ERROR });
     }
   };
 };
@@ -147,7 +147,7 @@ export const getOnAirTvShows = () => {
       dispatch({ type: GET_ON_AIR_TV_SHOWS, payload: response.data.results });
       dispatch({ type: END_FETCH });
     } catch (error) {
-      console.log(error);
+      dispatch({ type: GET_ERROR });
     }
   };
 };
@@ -164,7 +164,7 @@ export const getPopularTvShows = () => {
       dispatch({ type: GET_POPULAR_TV_SHOWS, payload: response.data.results });
       dispatch({ type: END_FETCH });
     } catch (error) {
-      console.log(error);
+      dispatch({ type: GET_ERROR });
     }
   };
 };
@@ -181,7 +181,7 @@ export const getTopRatedShows = () => {
       dispatch({ type: GET_TOP_RATED_SHOWS, payload: response.data.results });
       dispatch({ type: END_FETCH });
     } catch (error) {
-      console.log(error);
+      dispatch({ type: GET_ERROR });
     }
   };
 };
@@ -200,9 +200,7 @@ export const getSearchMoviesTvs = searchText => {
 
       dispatch({ type: END_FETCH });
     } catch (error) {
-      //const errorMsg = error.response.data.errors[0];
-      console.log(error);
-      //dispatch({ type: GET_ERROR, payload: errorMsg });
+      dispatch({ type: GET_ERROR });
     }
   };
 };

@@ -259,8 +259,7 @@ class NavDrawer extends React.Component {
                   component={Link}
                   to={{
                     pathname: "/movies/now-playing",
-                    url: "now-playing",
-                    subUrl: "Now Playing"
+                    state: { slug: "now-playing", headerName: "Now Playing" }
                   }}
                 >
                   <ListItemIcon>
@@ -273,8 +272,7 @@ class NavDrawer extends React.Component {
                   component={Link}
                   to={{
                     pathname: "/movies/upcoming",
-                    url: "upcoming",
-                    subUrl: "Upcoming Movies"
+                    state: { slug: "upcoming", headerName: "Upcoming Movies" }
                   }}
                 >
                   <ListItemIcon>
@@ -287,8 +285,10 @@ class NavDrawer extends React.Component {
                   component={Link}
                   to={{
                     pathname: "/movies/popular",
-                    url: "popular_movies",
-                    subUrl: "Popular Movies"
+                    state: {
+                      slug: "popular_movies",
+                      headerName: "Popular Movies"
+                    }
                   }}
                 >
                   <ListItemIcon>
@@ -307,8 +307,7 @@ class NavDrawer extends React.Component {
                   component={Link}
                   to={{
                     pathname: "/tvs/airing-today",
-                    url: "airing-today",
-                    subUrl: "On Air Shows"
+                    state: { slug: "airing-today", headerName: "On Air Shows" }
                   }}
                 >
                   <ListItemIcon>
@@ -321,8 +320,10 @@ class NavDrawer extends React.Component {
                   component={Link}
                   to={{
                     pathname: "/tvs/popular",
-                    url: "popular_shows",
-                    subUrl: "Popular TV Shows"
+                    state: {
+                      slug: "popular_shows",
+                      headerName: "Popular TV Shows"
+                    }
                   }}
                 >
                   <ListItemIcon>
@@ -335,8 +336,10 @@ class NavDrawer extends React.Component {
                   component={Link}
                   to={{
                     pathname: "/tvs/top-rated",
-                    url: "top_rated_shows",
-                    subUrl: "Top Rated TV Shows"
+                    state: {
+                      slug: "top_rated_shows",
+                      headerName: "Top Rated TV Shows"
+                    }
                   }}
                 >
                   <ListItemIcon>
@@ -379,11 +382,25 @@ class NavDrawer extends React.Component {
                   <Route
                     strict
                     path="/:genre/:name"
-                    component={SecondaryDashboard}
+                    render={props =>
+                      setter ? (
+                        <Redirect
+                          to={{
+                            pathname: "/search",
+                            search: `?q=${this.state.search}`,
+                            state: { referrer: this.state.search }
+                          }}
+                        />
+                      ) : (
+                        <SecondaryDashboard
+                          {...props}
+                          setRedirect={this.state.setRedirect}
+                          search={this.state.search}
+                          fromMain={this.state.fromMain}
+                        />
+                      )
+                    }
                   />
-
-                  <Route exact path="/" component={MainDashboard} />
-                  <Route path="/:genre/:name" component={SecondaryDashboard} />
                 </Switch>
               </div>
             </main>

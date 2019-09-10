@@ -20,23 +20,29 @@ class SecondaryDashboard extends Component {
   };
 
   UNSAFE_componentWillMount() {
-    this.loadData(this.props.location.url);
+    this.loadData(this.props.location.state.slug);
     this.props.rejectRedirect();
   }
 
+  // UNSAFE_componentWillReceiveProps(nextProps) {
+  //   if (nextProps.location.url !== this.props.location.url) {
+  //     this.loadData(nextProps.location.url);
+  //   }
+  // }
+
   UNSAFE_componentWillReceiveProps(nextProps) {
-    if (nextProps.location.url !== this.props.location.url) {
-      this.loadData(nextProps.location.url);
+    if (nextProps.location.state.slug !== this.props.location.state.slug) {
+      this.loadData(nextProps.location.state.slug);
     }
   }
 
-  loadData = url => {
-    switch (url) {
+  loadData = state => {
+    switch (state) {
       case "movies":
-        this.props.getMoviesbyGenre(this.props.location.id);
+        this.props.getMoviesbyGenre(this.props.location.state.id);
         break;
       case "tvs":
-        this.props.getTvsbyGenre(this.props.location.id);
+        this.props.getTvsbyGenre(this.props.location.state.id);
         break;
       case "now-playing":
         this.props.getLatestMovies();
@@ -67,8 +73,9 @@ class SecondaryDashboard extends Component {
       <div>
         <main>
           <Action
-            name={this.props.location.subUrl}
+            name={this.props.location.state.headerName}
             handleGoBack={this.handleGoBack}
+            id={this.props.location.state.id}
           />
           <ResultsList queries={queries} loading={loading} />
         </main>

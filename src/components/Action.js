@@ -23,7 +23,7 @@ const Action = props => {
     handleGetTvGenres,
     handleGoBack,
     name,
-    fromMain
+    id
   } = props;
   return (
     <div className={classes.heroContent}>
@@ -59,7 +59,7 @@ const Action = props => {
               </React.Fragment>
             ) : (
               <Grid item>
-                {handleGoBack && (
+                {id && handleGoBack && (
                   <Button
                     onClick={handleGoBack}
                     size="large"
