@@ -158,6 +158,8 @@ class NavDrawer extends React.Component {
     search: "",
     fromMain: true,
     setRedirect: false
+    search: ""
+
   };
 
   componentDidMount() {
@@ -173,11 +175,16 @@ class NavDrawer extends React.Component {
     this.setState({ open: false });
   };
 
+
   onSetRedirect = e => {
     if (e.key === "Enter") {
       this.props.setRedirect();
     }
   };
+  handleChange = e => {
+    this.setState({ search: e.target.value });
+  };
+
   handleChange = e => {
     this.setState({ search: e.target.value });
   };
@@ -228,7 +235,10 @@ class NavDrawer extends React.Component {
                     placeholder="Search here... "
                     value={this.state.search}
                     onChange={this.handleChange}
+
                     onKeyDown={this.onSetRedirect}
+
+
                     disableUnderline
                     classes={{
                       root: classes.inputRoot,
@@ -360,6 +370,7 @@ class NavDrawer extends React.Component {
             >
               <div>
                 <Switch>
+
                   <Route
                     exact
                     path="/"
@@ -389,6 +400,10 @@ class NavDrawer extends React.Component {
                     path="/:genre/:name"
                     component={SecondaryDashboard}
                   />
+
+                  <Route exact path="/" component={MainDashboard} />
+                  <Route path="/:genre/:name" component={SecondaryDashboard} />
+
                 </Switch>
               </div>
             </main>
