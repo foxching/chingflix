@@ -36,7 +36,6 @@ import OndemandVideo from "@material-ui/icons/OndemandVideo";
 import World from "../World";
 import MainDashboard from "../MainDashboard";
 import SecondaryDashboard from "../SecondaryDashboard";
-import { getSearchMoviesTvs } from "../../actions/movieTvActions";
 import { setRedirect, rejectRedirect } from "../../actions/setAction";
 
 import Input from "@material-ui/core/Input";
@@ -156,17 +155,9 @@ class NavDrawer extends React.Component {
   state = {
     open: false,
     search: "",
-    fromMain: true,
-    setRedirect: false
-    search: ""
-
+    fromMain: true
   };
 
-  componentDidMount() {
-    this.setState({
-      setRedirect: false
-    });
-  }
   handleDrawerOpen = () => {
     this.setState({ open: true });
   };
@@ -174,7 +165,6 @@ class NavDrawer extends React.Component {
   handleDrawerClose = () => {
     this.setState({ open: false });
   };
-
 
   onSetRedirect = e => {
     if (e.key === "Enter") {
@@ -185,12 +175,8 @@ class NavDrawer extends React.Component {
     this.setState({ search: e.target.value });
   };
 
-  handleChange = e => {
-    this.setState({ search: e.target.value });
-  };
-
   render() {
-    const { classes, theme, queries, setter } = this.props;
+    const { classes, theme, setter } = this.props;
     const { open } = this.state;
 
     return (
@@ -235,10 +221,7 @@ class NavDrawer extends React.Component {
                     placeholder="Search here... "
                     value={this.state.search}
                     onChange={this.handleChange}
-
                     onKeyDown={this.onSetRedirect}
-
-
                     disableUnderline
                     classes={{
                       root: classes.inputRoot,
@@ -370,7 +353,6 @@ class NavDrawer extends React.Component {
             >
               <div>
                 <Switch>
-
                   <Route
                     exact
                     path="/"
@@ -379,7 +361,7 @@ class NavDrawer extends React.Component {
                         <Redirect
                           to={{
                             pathname: "/search",
-                            search: `?utm=${this.state.search}`,
+                            search: `?q=${this.state.search}`,
                             state: { referrer: this.state.search }
                           }}
                         />
@@ -388,7 +370,6 @@ class NavDrawer extends React.Component {
                           {...props}
                           setRedirect={this.state.setRedirect}
                           search={this.state.search}
-                          queries={queries}
                           fromMain={this.state.fromMain}
                         />
                       )
@@ -403,7 +384,6 @@ class NavDrawer extends React.Component {
 
                   <Route exact path="/" component={MainDashboard} />
                   <Route path="/:genre/:name" component={SecondaryDashboard} />
-
                 </Switch>
               </div>
             </main>
@@ -421,12 +401,10 @@ NavDrawer.propTypes = {
 
 const mapState = state => {
   return {
-    queries: state.moviesTvs.queries,
     setter: state.setter.allowRedirect
   };
 };
 const actions = {
-  getSearchMoviesTvs,
   setRedirect,
   rejectRedirect
 };
