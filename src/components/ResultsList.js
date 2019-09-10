@@ -26,11 +26,12 @@ const ResultsList = props => {
       </Grid>
       <Container className={classes.cardGrid} maxWidth="md">
         <Grid container spacing={4}>
-          {queries.map(query => (
-            <Grid key={query.id} item xs={12} sm={6}>
-              <ResultsListItem query={query} />
-            </Grid>
-          ))}
+          {queries &&
+            queries.map(query => (
+              <Grid key={query.id} item xs={12} sm={6}>
+                <ResultsListItem query={query} />
+              </Grid>
+            ))}
         </Grid>
       </Container>
     </React.Fragment>

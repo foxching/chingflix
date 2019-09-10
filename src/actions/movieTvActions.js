@@ -10,6 +10,8 @@ import {
   GET_ON_AIR_TV_SHOWS,
   GET_POPULAR_TV_SHOWS,
   GET_TOP_RATED_SHOWS,
+  GET_SEARCH_MOVIES_TVS,
+  GET_ERROR,
   START_FETCH,
   END_FETCH,
   CLEAR_RESULTS
@@ -183,6 +185,28 @@ export const getTopRatedShows = () => {
     }
   };
 };
+
+export const getSearchMoviesTvs = searchText => {
+  return async dispatch => {
+    try {
+      dispatch({ type: CLEAR_RESULTS });
+      dispatch({ type: START_FETCH });
+      await delay(1000);
+      const response = await axios.get(
+        `https://api.themoviedb.org/3/search/multi?api_key=d3de272397bb7105279e2c887f31f0bb&language=en-US&append_to_response=images&include_image_language=en,null&query=${searchText}&page=1&include_adult=false`
+      );
+      console.log(response);
+      dispatch({ type: GET_SEARCH_MOVIES_TVS, payload: response.data.results });
+
+      dispatch({ type: END_FETCH });
+    } catch (error) {
+      //const errorMsg = error.response.data.errors[0];
+      console.log(error);
+      //dispatch({ type: GET_ERROR, payload: errorMsg });
+    }
+  };
+};
+
 const delay = ms => {
   return new Promise(resolve => setTimeout(resolve, ms));
 };

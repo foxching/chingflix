@@ -28,7 +28,7 @@ export default function Album() {
     <React.Fragment>
       <footer className={classes.footer}>
         <Typography variant="h6" align="center" gutterBottom>
-          CHINGDB
+          CHINGFLIX
         </Typography>
         <Typography
           variant="subtitle1"

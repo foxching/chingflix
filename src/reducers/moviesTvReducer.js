@@ -9,6 +9,8 @@ import {
   GET_ON_AIR_TV_SHOWS,
   GET_POPULAR_TV_SHOWS,
   GET_TOP_RATED_SHOWS,
+  GET_SEARCH_MOVIES_TVS,
+  GET_ERROR,
   START_FETCH,
   END_FETCH,
   CLEAR_RESULTS
@@ -17,6 +19,7 @@ import {
 const initialState = {
   genres: [],
   queries: [],
+  error: "",
   loading: false
 };
 
@@ -85,6 +88,16 @@ const movieTvReducer = (state = initialState, action) => {
       return {
         ...state,
         queries: action.payload
+      };
+    case GET_SEARCH_MOVIES_TVS:
+      return {
+        ...state,
+        queries: action.payload
+      };
+    case GET_ERROR:
+      return {
+        ...state,
+        error: "Error Loading Data"
       };
     case CLEAR_RESULTS:
       return {

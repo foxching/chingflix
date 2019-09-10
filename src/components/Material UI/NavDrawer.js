@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { compose } from "redux";
-import { Router, Route, Link, Switch } from "react-router-dom";
+import { Router, Route, Link, Switch, Redirect } from "react-router-dom";
 import createBrowserHistory from "history/createBrowserHistory";
 import PropTypes from "prop-types";
 import clsx from "clsx";
@@ -23,17 +23,21 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import ListSubheader from "@material-ui/core/ListSubheader";
+
 import Theaters from "@material-ui/icons/Theaters";
-import Movie from "@material-ui/icons/Movie";
 import Poll from "@material-ui/icons/Poll";
-import Tv from "@material-ui/icons/Tv";
+//import Tv from "@material-ui/icons/Tv";
+//import Movie from "@material-ui/icons/Movie";
 import TrendingUp from "@material-ui/icons/TrendingUp";
 import AvTimer from "@material-ui/icons/AvTimer";
 import LiveTv from "@material-ui/icons/LiveTv";
 import OndemandVideo from "@material-ui/icons/OndemandVideo";
 
+import World from "../World";
 import MainDashboard from "../MainDashboard";
 import SecondaryDashboard from "../SecondaryDashboard";
+import { getSearchMoviesTvs } from "../../actions/movieTvActions";
+import { setRedirect, rejectRedirect } from "../../actions/setAction";
 
 import Input from "@material-ui/core/Input";
 import { fade } from "@material-ui/core/styles/colorManipulator";
@@ -150,9 +154,17 @@ const history = createBrowserHistory();
 
 class NavDrawer extends React.Component {
   state = {
-    open: false
+    open: false,
+    search: "",
+    fromMain: true,
+    setRedirect: false
   };
 
+  componentDidMount() {
+    this.setState({
+      setRedirect: false
+    });
+  }
   handleDrawerOpen = () => {
     this.setState({ open: true });
   };
@@ -161,8 +173,17 @@ class NavDrawer extends React.Component {
     this.setState({ open: false });
   };
 
+  onSetRedirect = e => {
+    if (e.key === "Enter") {
+      this.props.setRedirect();
+    }
+  };
+  handleChange = e => {
+    this.setState({ search: e.target.value });
+  };
+
   render() {
-    const { classes, theme } = this.props;
+    const { classes, theme, queries, setter } = this.props;
     const { open } = this.state;
 
     return (
@@ -195,15 +216,19 @@ class NavDrawer extends React.Component {
                   style={{ textDecoration: "none" }}
                   noWrap
                 >
-                  CHING DB
+                  CHINGFLIX
                 </Typography>
                 <div className={classes.grow} />
                 <div className={classes.search}>
                   <div className={classes.searchIcon}>
                     <SearchIcon />
                   </div>
+
                   <Input
                     placeholder="Search here... "
+                    value={this.state.search}
+                    onChange={this.handleChange}
+                    onKeyDown={this.onSetRedirect}
                     disableUnderline
                     classes={{
                       root: classes.inputRoot,
@@ -335,38 +360,30 @@ class NavDrawer extends React.Component {
             >
               <div>
                 <Switch>
-                  <Route exact path="/" component={MainDashboard} />
                   <Route
                     exact
-                    path="/movies/now-playing"
-                    component={SecondaryDashboard}
+                    path="/"
+                    render={props =>
+                      setter ? (
+                        <Redirect
+                          to={{
+                            pathname: "/search",
+                            search: `?utm=${this.state.search}`,
+                            state: { referrer: this.state.search }
+                          }}
+                        />
+                      ) : (
+                        <MainDashboard
+                          {...props}
+                          setRedirect={this.state.setRedirect}
+                          search={this.state.search}
+                          queries={queries}
+                          fromMain={this.state.fromMain}
+                        />
+                      )
+                    }
                   />
-                  <Route
-                    exact
-                    path="/movies/upcoming"
-                    component={SecondaryDashboard}
-                  />
-                  <Route
-                    exact
-                    path="/movies/popular"
-                    component={SecondaryDashboard}
-                  />
-                  />
-                  <Route
-                    exact
-                    path="/tvs/airing-today"
-                    component={SecondaryDashboard}
-                  />
-                  <Route
-                    exact
-                    path="/tvs/popular"
-                    component={SecondaryDashboard}
-                  />
-                  <Route
-                    exact
-                    path="/tvs/top-rated"
-                    component={SecondaryDashboard}
-                  />
+                  <Route exact path="/search/" component={World} />
                   <Route
                     strict
                     path="/:genre/:name"
@@ -387,7 +404,21 @@ NavDrawer.propTypes = {
   theme: PropTypes.object.isRequired
 };
 
+const mapState = state => {
+  return {
+    queries: state.moviesTvs.queries,
+    setter: state.setter.allowRedirect
+  };
+};
+const actions = {
+  getSearchMoviesTvs,
+  setRedirect,
+  rejectRedirect
+};
 export default compose(
-  connect(),
+  connect(
+    mapState,
+    actions
+  ),
   withStyles(styles, { withTheme: true })
 )(NavDrawer);
