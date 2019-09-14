@@ -4,7 +4,7 @@ import { withStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import Container from "@material-ui/core/Container";
 import GenreListItem from "./GenreListItem";
-import Loading from "./Loading";
+import Loading from "../Loading/Loading";
 
 const styles = theme => ({
   cardGrid: {

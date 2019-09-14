@@ -1,6 +1,6 @@
 import React from "react";
-import NavDrawer from "./components/Material UI/NavDrawer";
-import Footer from "./components/Footer";
+import NavDrawer from "./components/Nav/NavDrawer";
+import Footer from "./components/Footer/Footer";
 
 class App extends React.Component {
   render() {

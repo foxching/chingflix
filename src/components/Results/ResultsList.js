@@ -3,8 +3,7 @@ import { withStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
 import ResultsListItem from "./ResultsListItem";
-import Loading from "./Loading";
-//import { Link } from "react-router-dom";
+import Loading from "../Loading/Loading";
 
 const styles = theme => ({
   root: {

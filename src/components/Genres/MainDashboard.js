@@ -1,13 +1,12 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import GenreList from "./GenreList";
-import Action from "./Action";
-//import { Redirect } from "react-router-dom";
+import Action from "../Action/Action";
 import {
   getMoviesGenres,
   getTvsGenres,
   clearResults
-} from "../actions/movieTvActions";
+} from "../../actions/movieTvActions";
 
 class MainDashboard extends Component {
   state = {

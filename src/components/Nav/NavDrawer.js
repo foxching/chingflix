@@ -2,7 +2,8 @@ import React from "react";
 import { connect } from "react-redux";
 import { compose } from "redux";
 import { Router, Route, Link, Switch } from "react-router-dom";
-import createBrowserHistory from "history/createBrowserHistory";
+//import createBrowserHistory from "history/createBrowserHistory";
+import { createBrowserHistory } from "history";
 import PropTypes from "prop-types";
 import clsx from "clsx";
 import { withStyles } from "@material-ui/core/styles";
@@ -31,9 +32,9 @@ import AvTimer from "@material-ui/icons/AvTimer";
 import LiveTv from "@material-ui/icons/LiveTv";
 import OndemandVideo from "@material-ui/icons/OndemandVideo";
 
-import World from "../World";
-import MainDashboard from "../MainDashboard";
-import SecondaryDashboard from "../SecondaryDashboard";
+import World from "../Search/World";
+import MainDashboard from "../Genres/MainDashboard";
+import SecondaryDashboard from "../Results/SecondaryDashboard";
 import SearchForm from "./SearchForm";
 
 const drawerWidth = 250;

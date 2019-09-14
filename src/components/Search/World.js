@@ -1,13 +1,11 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { getSearchMoviesTvs } from "../actions/movieTvActions";
-import { rejectRedirect } from "../actions/setAction";
-import Action from "./Action";
-import ResultsList from "./ResultsList";
+import { getSearchMoviesTvs } from "../../actions/movieTvActions";
+import Action from "../Action/Action";
+import ResultsList from "../Results/ResultsList";
 
 class World extends Component {
   UNSAFE_componentWillMount() {
-    this.props.rejectRedirect();
     this.getSearch(this.props.location.state.detail);
   }
 
@@ -40,8 +38,7 @@ const mapState = state => {
 };
 
 const actions = {
-  getSearchMoviesTvs,
-  rejectRedirect
+  getSearchMoviesTvs
 };
 
 export default connect(
