@@ -22,6 +22,7 @@ const Action = props => {
     handleGetMovieGenres,
     handleGetTvGenres,
     handleGoBack,
+    loading,
     name,
     id
   } = props;
@@ -29,12 +30,12 @@ const Action = props => {
     <div className={classes.heroContent}>
       <Container maxWidth="sm">
         <Typography variant="h5" align="center" color="initial" paragraph>
-          {name ? name : "Genre List"}
+          {loading ? "Please wait...." : name}
         </Typography>
 
         <div className={classes.heroButtons}>
           <Grid container spacing={2} justify="center">
-            {!name ? (
+            {handleGetMovieGenres && handleGetTvGenres ? (
               <React.Fragment>
                 <Grid item>
                   <Button

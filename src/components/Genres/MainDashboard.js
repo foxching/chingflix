@@ -11,7 +11,8 @@ import {
 class MainDashboard extends Component {
   state = {
     toggle: false,
-    url: "movies"
+    url: "movies",
+    name: "Genre List"
   };
 
   UNSAFE_componentWillMount() {
@@ -42,6 +43,8 @@ class MainDashboard extends Component {
     return (
       <div>
         <Action
+          loading={loading}
+          name={this.state.name}
           toggle={toggle}
           handleGetMovieGenres={this.handleGetMovieGenres}
           handleGetTvGenres={this.handleGetTvGenres}

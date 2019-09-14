@@ -65,9 +65,11 @@ class SecondaryDashboard extends Component {
       <div>
         <main>
           <Action
+            loading={loading}
             name={this.props.location.state.headerName}
             handleGoBack={this.handleGoBack}
             id={this.props.location.state.id}
+            queries={queries}
           />
           <ResultsList queries={queries} loading={loading} />
         </main>

@@ -32,7 +32,7 @@ import AvTimer from "@material-ui/icons/AvTimer";
 import LiveTv from "@material-ui/icons/LiveTv";
 import OndemandVideo from "@material-ui/icons/OndemandVideo";
 
-import World from "../Search/World";
+import SearchDashboard from "../Search/SearchDashboard";
 import MainDashboard from "../Genres/MainDashboard";
 import SecondaryDashboard from "../Results/SecondaryDashboard";
 import SearchForm from "./SearchForm";
@@ -277,7 +277,7 @@ class NavDrawer extends React.Component {
               <div>
                 <Switch>
                   <Route exact path="/" component={MainDashboard} />
-                  <Route path="/search" component={World} />
+                  <Route path="/search" component={SearchDashboard} />
                   <Route path="/:genre/:name" component={SecondaryDashboard} />
                 </Switch>
               </div>

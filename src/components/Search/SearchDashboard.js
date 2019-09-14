@@ -4,7 +4,7 @@ import { getSearchMoviesTvs } from "../../actions/movieTvActions";
 import Action from "../Action/Action";
 import ResultsList from "../Results/ResultsList";
 
-class World extends Component {
+class SearchDashboard extends Component {
   UNSAFE_componentWillMount() {
     this.getSearch(this.props.location.state.detail);
   }
@@ -22,7 +22,7 @@ class World extends Component {
     return (
       <div>
         <main>
-          <Action name="Search Results" />
+          <Action name="Search Results" loading={loading} />
           <ResultsList queries={queries} loading={loading} />
         </main>
       </div>
@@ -44,4 +44,4 @@ const actions = {
 export default connect(
   mapState,
   actions
-)(World);
+)(SearchDashboard);
