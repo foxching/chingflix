@@ -24,12 +24,6 @@ class SecondaryDashboard extends Component {
     this.props.rejectRedirect();
   }
 
-  // UNSAFE_componentWillReceiveProps(nextProps) {
-  //   if (nextProps.location.url !== this.props.location.url) {
-  //     this.loadData(nextProps.location.url);
-  //   }
-  // }
-
   UNSAFE_componentWillReceiveProps(nextProps) {
     if (nextProps.location.state.slug !== this.props.location.state.slug) {
       this.loadData(nextProps.location.state.slug);

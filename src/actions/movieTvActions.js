@@ -24,7 +24,7 @@ export const getMoviesGenres = () => {
       dispatch({ type: START_FETCH });
       await delay(1000);
       const response = await axios.get(
-        "https://api.themoviedb.org/3/genre/movie/list?api_key=d3de272397bb7105279e2c887f31f0bb&language=en-US"
+        "https://cors-anywhere.herokuapp.com/https://api.themoviedb.org/3/genre/movie/list?api_key=d3de272397bb7105279e2c887f31f0bb&language=en-US"
       );
       dispatch({ type: GET_MOVIE_GENRES, payload: response.data.genres });
       dispatch({ type: END_FETCH });
@@ -41,7 +41,7 @@ export const getTvsGenres = () => {
       dispatch({ type: START_FETCH });
       await delay(1000);
       const response = await axios.get(
-        "https://api.themoviedb.org/3/genre/tv/list?api_key=d3de272397bb7105279e2c887f31f0bb&language=en-US"
+        "https://cors-anywhere.herokuapp.com/https://api.themoviedb.org/3/genre/tv/list?api_key=d3de272397bb7105279e2c887f31f0bb&language=en-US"
       );
       dispatch({ type: GET_TV_GENRES, payload: response.data.genres });
       dispatch({ type: END_FETCH });
@@ -58,7 +58,7 @@ export const getMoviesbyGenre = genreId => {
       dispatch({ type: START_FETCH });
       await delay(1000);
       const response = await axios.get(
-        `https://api.themoviedb.org/3/discover/movie?api_key=d3de272397bb7105279e2c887f31f0bb&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=true&page=1&with_genres=${genreId}`
+        `https://cors-anywhere.herokuapp.com/https://api.themoviedb.org/3/discover/movie?api_key=d3de272397bb7105279e2c887f31f0bb&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=true&page=1&with_genres=${genreId}`
       );
       dispatch({ type: GET_MOVIES_BY_GENRE, payload: response.data.results });
       dispatch({ type: END_FETCH });
@@ -75,7 +75,7 @@ export const getTvsbyGenre = genreId => {
       dispatch({ type: START_FETCH });
       await delay(1000);
       const response = await axios.get(
-        `https://api.themoviedb.org/3/discover/tv?api_key=d3de272397bb7105279e2c887f31f0bb&language=en-US&sort_by=popularity.desc&page=1&timezone=America%2FNew_York&with_genres=${genreId}&include_null_first_air_dates=false`
+        `https://cors-anywhere.herokuapp.com/https://api.themoviedb.org/3/discover/tv?api_key=d3de272397bb7105279e2c887f31f0bb&language=en-US&sort_by=popularity.desc&page=1&timezone=America%2FNew_York&with_genres=${genreId}&include_null_first_air_dates=false`
       );
       dispatch({ type: GET_TVS_BY_GENRE, payload: response.data.results });
       dispatch({ type: END_FETCH });
@@ -92,7 +92,7 @@ export const getLatestMovies = () => {
       dispatch({ type: START_FETCH });
       await delay(1000);
       const response = await axios.get(
-        `https://api.themoviedb.org/3/movie/now_playing?api_key=d3de272397bb7105279e2c887f31f0bb&language=en-US&page=1&region=US`
+        `https://cors-anywhere.herokuapp.com/https://api.themoviedb.org/3/movie/now_playing?api_key=d3de272397bb7105279e2c887f31f0bb&language=en-US&page=1&region=US`
       );
       dispatch({ type: GET_MOVIE_LATEST, payload: response.data.results });
       dispatch({ type: END_FETCH });
@@ -108,7 +108,7 @@ export const getUpcomingMovies = () => {
       dispatch({ type: START_FETCH });
       await delay(1000);
       const response = await axios.get(
-        `https://api.themoviedb.org/3/movie/upcoming?api_key=d3de272397bb7105279e2c887f31f0bb&language=en-US&page=1&region=US`
+        `https://cors-anywhere.herokuapp.com/https://api.themoviedb.org/3/movie/upcoming?api_key=d3de272397bb7105279e2c887f31f0bb&language=en-US&page=1&region=US`
       );
       dispatch({ type: GET_MOVIE_UPCOMING, payload: response.data.results });
       dispatch({ type: END_FETCH });
@@ -125,7 +125,7 @@ export const getTrendingMovies = () => {
       dispatch({ type: START_FETCH });
       await delay(1000);
       const response = await axios.get(
-        `https://api.themoviedb.org/3/trending/movie/week?api_key=d3de272397bb7105279e2c887f31f0bb`
+        `https://cors-anywhere.herokuapp.com/https://api.themoviedb.org/3/trending/movie/week?api_key=d3de272397bb7105279e2c887f31f0bb`
       );
       dispatch({ type: GET_TRENDING_MOVIES, payload: response.data.results });
       dispatch({ type: END_FETCH });
@@ -142,7 +142,7 @@ export const getOnAirTvShows = () => {
       dispatch({ type: START_FETCH });
       await delay(1000);
       const response = await axios.get(
-        `https://api.themoviedb.org/3/tv/airing_today?api_key=d3de272397bb7105279e2c887f31f0bb&language=en-US&page=1`
+        `https://cors-anywhere.herokuapp.com/https://api.themoviedb.org/3/tv/airing_today?api_key=d3de272397bb7105279e2c887f31f0bb&language=en-US&page=1`
       );
       dispatch({ type: GET_ON_AIR_TV_SHOWS, payload: response.data.results });
       dispatch({ type: END_FETCH });
@@ -159,7 +159,7 @@ export const getPopularTvShows = () => {
       dispatch({ type: START_FETCH });
       await delay(1000);
       const response = await axios.get(
-        `https://api.themoviedb.org/3/tv/popular?api_key=d3de272397bb7105279e2c887f31f0bb&language=en-US&page=1`
+        `https://cors-anywhere.herokuapp.com/https://api.themoviedb.org/3/tv/popular?api_key=d3de272397bb7105279e2c887f31f0bb&language=en-US&page=1`
       );
       dispatch({ type: GET_POPULAR_TV_SHOWS, payload: response.data.results });
       dispatch({ type: END_FETCH });
@@ -176,7 +176,7 @@ export const getTopRatedShows = () => {
       dispatch({ type: START_FETCH });
       await delay(1000);
       const response = await axios.get(
-        "https://api.themoviedb.org/3/tv/top_rated?api_key=d3de272397bb7105279e2c887f31f0bb&language=en-US&page=1"
+        "https://cors-anywhere.herokuapp.com/https://api.themoviedb.org/3/tv/top_rated?api_key=d3de272397bb7105279e2c887f31f0bb&language=en-US&page=1"
       );
       dispatch({ type: GET_TOP_RATED_SHOWS, payload: response.data.results });
       dispatch({ type: END_FETCH });
@@ -193,7 +193,7 @@ export const getSearchMoviesTvs = searchText => {
       dispatch({ type: START_FETCH });
       await delay(1000);
       const response = await axios.get(
-        `https://api.themoviedb.org/3/search/multi?api_key=d3de272397bb7105279e2c887f31f0bb&language=en-US&append_to_response=images&include_image_language=en,null&query=${searchText}&page=1&include_adult=false`
+        `https://cors-anywhere.herokuapp.com/https://api.themoviedb.org/3/search/multi?api_key=d3de272397bb7105279e2c887f31f0bb&language=en-US&append_to_response=images&include_image_language=en,null&query=${searchText}&page=1&include_adult=false`
       );
       console.log(response);
       dispatch({ type: GET_SEARCH_MOVIES_TVS, payload: response.data.results });

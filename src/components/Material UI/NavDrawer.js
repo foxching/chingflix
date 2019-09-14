@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { compose } from "redux";
-import { Router, Route, Link, Switch, Redirect } from "react-router-dom";
+import { Router, Route, Link, Switch } from "react-router-dom";
 import createBrowserHistory from "history/createBrowserHistory";
 import PropTypes from "prop-types";
 import clsx from "clsx";
@@ -26,8 +26,6 @@ import ListSubheader from "@material-ui/core/ListSubheader";
 
 import Theaters from "@material-ui/icons/Theaters";
 import Poll from "@material-ui/icons/Poll";
-//import Tv from "@material-ui/icons/Tv";
-//import Movie from "@material-ui/icons/Movie";
 import TrendingUp from "@material-ui/icons/TrendingUp";
 import AvTimer from "@material-ui/icons/AvTimer";
 import LiveTv from "@material-ui/icons/LiveTv";
@@ -36,11 +34,7 @@ import OndemandVideo from "@material-ui/icons/OndemandVideo";
 import World from "../World";
 import MainDashboard from "../MainDashboard";
 import SecondaryDashboard from "../SecondaryDashboard";
-import { setRedirect, rejectRedirect } from "../../actions/setAction";
-
-import Input from "@material-ui/core/Input";
-import { fade } from "@material-ui/core/styles/colorManipulator";
-import SearchIcon from "@material-ui/icons/Search";
+import SearchForm from "./SearchForm";
 
 const drawerWidth = 250;
 
@@ -98,54 +92,6 @@ const styles = theme => ({
       duration: theme.transitions.duration.enteringScreen
     }),
     marginLeft: 0
-  },
-
-  grow: {
-    flexGrow: 0.9
-  },
-  title: {
-    display: "none",
-    [theme.breakpoints.up("sm")]: {
-      display: "block"
-    }
-  },
-  search: {
-    position: "relative",
-    borderRadius: theme.shape.borderRadius,
-    backgroundColor: fade(theme.palette.common.white, 0.15),
-    "&:hover": {
-      backgroundColor: fade(theme.palette.common.white, 0.25)
-    },
-    marginLeft: 0,
-    width: "100%",
-    [theme.breakpoints.up("sm")]: {
-      marginLeft: theme.spacing(1),
-      width: "auto"
-    }
-  },
-  searchIcon: {
-    width: theme.spacing(7),
-    height: "100%",
-    position: "absolute",
-    pointerEvents: "none",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center"
-  },
-  inputRoot: {
-    color: "inherit",
-    width: "100%"
-  },
-  inputInput: {
-    padding: theme.spacing(1, 1, 1, 7),
-    transition: theme.transitions.create("width"),
-    width: "100%",
-    [theme.breakpoints.up("sm")]: {
-      width: 120,
-      "&:focus": {
-        width: 200
-      }
-    }
   }
 });
 
@@ -154,7 +100,6 @@ const history = createBrowserHistory();
 class NavDrawer extends React.Component {
   state = {
     open: false,
-    search: "",
     fromMain: true
   };
 
@@ -164,15 +109,6 @@ class NavDrawer extends React.Component {
 
   handleDrawerClose = () => {
     this.setState({ open: false });
-  };
-
-  onSetRedirect = e => {
-    if (e.key === "Enter") {
-      this.props.setRedirect();
-    }
-  };
-  handleChange = e => {
-    this.setState({ search: e.target.value });
   };
 
   render() {
@@ -211,24 +147,7 @@ class NavDrawer extends React.Component {
                 >
                   CHINGFLIX
                 </Typography>
-                <div className={classes.grow} />
-                <div className={classes.search}>
-                  <div className={classes.searchIcon}>
-                    <SearchIcon />
-                  </div>
-
-                  <Input
-                    placeholder="Search here... "
-                    value={this.state.search}
-                    onChange={this.handleChange}
-                    onKeyDown={this.onSetRedirect}
-                    disableUnderline
-                    classes={{
-                      root: classes.inputRoot,
-                      input: classes.inputInput
-                    }}
-                  />
-                </div>
+                <SearchForm />
               </Toolbar>
             </AppBar>
             <Drawer
@@ -356,51 +275,9 @@ class NavDrawer extends React.Component {
             >
               <div>
                 <Switch>
-                  <Route
-                    exact
-                    path="/"
-                    render={props =>
-                      setter ? (
-                        <Redirect
-                          to={{
-                            pathname: "/search",
-                            search: `?q=${this.state.search}`,
-                            state: { referrer: this.state.search }
-                          }}
-                        />
-                      ) : (
-                        <MainDashboard
-                          {...props}
-                          setRedirect={this.state.setRedirect}
-                          search={this.state.search}
-                          fromMain={this.state.fromMain}
-                        />
-                      )
-                    }
-                  />
-                  <Route exact path="/search/" component={World} />
-                  <Route
-                    strict
-                    path="/:genre/:name"
-                    render={props =>
-                      setter ? (
-                        <Redirect
-                          to={{
-                            pathname: "/search",
-                            search: `?q=${this.state.search}`,
-                            state: { referrer: this.state.search }
-                          }}
-                        />
-                      ) : (
-                        <SecondaryDashboard
-                          {...props}
-                          setRedirect={this.state.setRedirect}
-                          search={this.state.search}
-                          fromMain={this.state.fromMain}
-                        />
-                      )
-                    }
-                  />
+                  <Route exact path="/" component={MainDashboard} />
+                  <Route path="/search" component={World} />
+                  <Route path="/:genre/:name" component={SecondaryDashboard} />
                 </Switch>
               </div>
             </main>
@@ -416,19 +293,7 @@ NavDrawer.propTypes = {
   theme: PropTypes.object.isRequired
 };
 
-const mapState = state => {
-  return {
-    setter: state.setter.allowRedirect
-  };
-};
-const actions = {
-  setRedirect,
-  rejectRedirect
-};
 export default compose(
-  connect(
-    mapState,
-    actions
-  ),
+  connect(),
   withStyles(styles, { withTheme: true })
 )(NavDrawer);

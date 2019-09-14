@@ -8,8 +8,16 @@ import ResultsList from "./ResultsList";
 class World extends Component {
   UNSAFE_componentWillMount() {
     this.props.rejectRedirect();
-    this.props.getSearchMoviesTvs(this.props.location.state.referrer);
+    this.getSearch(this.props.location.state.detail);
   }
+
+  UNSAFE_componentWillReceiveProps(nextProps) {
+    if (this.props.location.state.detail !== nextProps.location.state.detail) {
+      this.getSearch(nextProps.location.state.detail);
+    }
+  }
+
+  getSearch = detail => [this.props.getSearchMoviesTvs(detail)];
 
   render() {
     const { queries, loading } = this.props;
