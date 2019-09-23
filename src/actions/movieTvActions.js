@@ -85,66 +85,46 @@ export const getTvsbyGenre = genreId => {
   };
 };
 
-export const getLatestMovies = () => {
+export const getLatestMovies = pageNum => {
   return async dispatch => {
     try {
       dispatch({ type: CLEAR_RESULTS });
       dispatch({ type: START_FETCH });
       await delay(1000);
       const response = await axios.get(
-        `https://cors-anywhere.herokuapp.com/https://api.themoviedb.org/3/movie/now_playing?api_key=d3de272397bb7105279e2c887f31f0bb&language=en-US&page=1&region=US`
+        `https://cors-anywhere.herokuapp.com/https://api.themoviedb.org/3/movie/now_playing?api_key=d3de272397bb7105279e2c887f31f0bb&language=en-US&page=${pageNum}&region=US`
       );
-      dispatch({ type: GET_MOVIE_LATEST, payload: response.data.results });
+      console.log(response.data);
+      dispatch({
+        type: GET_MOVIE_LATEST,
+        payload: response.data.results,
+        page: response.data.page,
+        totalPage: response.data.total_pages,
+        totalResults: response.data.total_results
+      });
       dispatch({ type: END_FETCH });
     } catch (error) {
       dispatch({ type: GET_ERROR });
     }
   };
 };
-export const getUpcomingMovies = () => {
+export const getUpcomingMovies = pageNum => {
   return async dispatch => {
     try {
       dispatch({ type: CLEAR_RESULTS });
       dispatch({ type: START_FETCH });
       await delay(1000);
       const response = await axios.get(
-        `https://cors-anywhere.herokuapp.com/https://api.themoviedb.org/3/movie/upcoming?api_key=d3de272397bb7105279e2c887f31f0bb&language=en-US&page=1&region=US`
+        `https://cors-anywhere.herokuapp.com/https://api.themoviedb.org/3/movie/upcoming?api_key=d3de272397bb7105279e2c887f31f0bb&language=en-US&page=${pageNum}&region=US`
       );
-      dispatch({ type: GET_MOVIE_UPCOMING, payload: response.data.results });
-      dispatch({ type: END_FETCH });
-    } catch (error) {
-      dispatch({ type: GET_ERROR });
-    }
-  };
-};
-
-export const getTrendingMovies = () => {
-  return async dispatch => {
-    try {
-      dispatch({ type: CLEAR_RESULTS });
-      dispatch({ type: START_FETCH });
-      await delay(1000);
-      const response = await axios.get(
-        `https://cors-anywhere.herokuapp.com/https://api.themoviedb.org/3/trending/movie/week?api_key=d3de272397bb7105279e2c887f31f0bb`
-      );
-      dispatch({ type: GET_TRENDING_MOVIES, payload: response.data.results });
-      dispatch({ type: END_FETCH });
-    } catch (error) {
-      dispatch({ type: GET_ERROR });
-    }
-  };
-};
-
-export const getOnAirTvShows = () => {
-  return async dispatch => {
-    try {
-      dispatch({ type: CLEAR_RESULTS });
-      dispatch({ type: START_FETCH });
-      await delay(1000);
-      const response = await axios.get(
-        `https://cors-anywhere.herokuapp.com/https://api.themoviedb.org/3/tv/airing_today?api_key=d3de272397bb7105279e2c887f31f0bb&language=en-US&page=1`
-      );
-      dispatch({ type: GET_ON_AIR_TV_SHOWS, payload: response.data.results });
+      console.log(response.data);
+      dispatch({
+        type: GET_MOVIE_UPCOMING,
+        payload: response.data.results,
+        page: response.data.page,
+        totalPage: response.data.total_pages,
+        totalResults: response.data.total_results
+      });
       dispatch({ type: END_FETCH });
     } catch (error) {
       dispatch({ type: GET_ERROR });
@@ -152,16 +132,23 @@ export const getOnAirTvShows = () => {
   };
 };
 
-export const getPopularTvShows = () => {
+export const getTrendingMovies = pageNum => {
   return async dispatch => {
     try {
       dispatch({ type: CLEAR_RESULTS });
       dispatch({ type: START_FETCH });
       await delay(1000);
       const response = await axios.get(
-        `https://cors-anywhere.herokuapp.com/https://api.themoviedb.org/3/tv/popular?api_key=d3de272397bb7105279e2c887f31f0bb&language=en-US&page=1`
+        `https://cors-anywhere.herokuapp.com/https://api.themoviedb.org/3/trending/movie/week?api_key=d3de272397bb7105279e2c887f31f0bb&page=${pageNum}`
       );
-      dispatch({ type: GET_POPULAR_TV_SHOWS, payload: response.data.results });
+      console.log(response.data);
+      dispatch({
+        type: GET_TRENDING_MOVIES,
+        payload: response.data.results,
+        page: response.data.page,
+        totalPage: response.data.total_pages,
+        totalResults: response.data.total_results
+      });
       dispatch({ type: END_FETCH });
     } catch (error) {
       dispatch({ type: GET_ERROR });
@@ -169,16 +156,72 @@ export const getPopularTvShows = () => {
   };
 };
 
-export const getTopRatedShows = () => {
+export const getOnAirTvShows = pagenUm => {
   return async dispatch => {
     try {
       dispatch({ type: CLEAR_RESULTS });
       dispatch({ type: START_FETCH });
       await delay(1000);
       const response = await axios.get(
-        "https://cors-anywhere.herokuapp.com/https://api.themoviedb.org/3/tv/top_rated?api_key=d3de272397bb7105279e2c887f31f0bb&language=en-US&page=1"
+        `https://cors-anywhere.herokuapp.com/https://api.themoviedb.org/3/tv/airing_today?api_key=d3de272397bb7105279e2c887f31f0bb&language=en-US&page=${pageNum}`
       );
-      dispatch({ type: GET_TOP_RATED_SHOWS, payload: response.data.results });
+      console.log(response.data);
+      dispatch({
+        type: GET_ON_AIR_TV_SHOWS,
+        payload: response.data.results,
+        page: response.data.page,
+        totalPage: response.data.total_pages,
+        totalResults: response.data.total_results
+      });
+      dispatch({ type: END_FETCH });
+    } catch (error) {
+      dispatch({ type: GET_ERROR });
+    }
+  };
+};
+
+export const getPopularTvShows = pageNum => {
+  return async dispatch => {
+    try {
+      dispatch({ type: CLEAR_RESULTS });
+      dispatch({ type: START_FETCH });
+      await delay(1000);
+      const response = await axios.get(
+        `https://cors-anywhere.herokuapp.com/https://api.themoviedb.org/3/tv/popular?api_key=d3de272397bb7105279e2c887f31f0bb&language=en-US&page=${pageNum}`
+      );
+      console.log(response.data);
+      dispatch({
+        type: GET_POPULAR_TV_SHOWS,
+        payload: response.data.results,
+        page: response.data.page,
+        totalPage: response.data.total_pages,
+        totalResults: response.data.total_results
+      });
+      console.log(response.data);
+      dispatch({ type: END_FETCH });
+    } catch (error) {
+      dispatch({ type: GET_ERROR });
+    }
+  };
+};
+
+export const getTopRatedShows = pageNum => {
+  return async dispatch => {
+    try {
+      dispatch({ type: CLEAR_RESULTS });
+      dispatch({ type: START_FETCH });
+      await delay(1000);
+      const response = await axios.get(
+        `https://cors-anywhere.herokuapp.com/https://api.themoviedb.org/3/tv/top_rated?api_key=d3de272397bb7105279e2c887f31f0bb&language=en-US&page=${pageNum}`
+      );
+      console.log(response.data);
+      dispatch({
+        type: GET_TOP_RATED_SHOWS,
+        payload: response.data.results,
+        page: response.data.page,
+        totalPage: response.data.total_pages,
+        totalResults: response.data.total_results
+      });
       dispatch({ type: END_FETCH });
     } catch (error) {
       dispatch({ type: GET_ERROR });
@@ -195,7 +238,8 @@ export const getSearchMoviesTvs = searchText => {
       const response = await axios.get(
         `https://cors-anywhere.herokuapp.com/https://api.themoviedb.org/3/search/multi?api_key=d3de272397bb7105279e2c887f31f0bb&language=en-US&append_to_response=images&include_image_language=en,null&query=${searchText}&page=1&include_adult=false`
       );
-      console.log(response);
+      console.log(response.data);
+
       dispatch({ type: GET_SEARCH_MOVIES_TVS, payload: response.data.results });
 
       dispatch({ type: END_FETCH });

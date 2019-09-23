@@ -20,7 +20,10 @@ const initialState = {
   genres: [],
   queries: [],
   error: "",
-  loading: false
+  loading: false,
+  page: null,
+  totalPage: null,
+  totalResults: null
 };
 
 const movieTvReducer = (state = initialState, action) => {
@@ -62,37 +65,58 @@ const movieTvReducer = (state = initialState, action) => {
     case GET_MOVIE_LATEST:
       return {
         ...state,
-        queries: action.payload
+        queries: action.payload,
+        page: action.page,
+        totalPage: action.totalPage,
+        totalResults: action.totalResults
       };
     case GET_MOVIE_UPCOMING:
       return {
         ...state,
-        queries: action.payload
+        queries: action.payload,
+        page: action.page,
+        totalPage: action.totalPage,
+        totalResults: action.totalResults
       };
     case GET_TRENDING_MOVIES:
       return {
         ...state,
-        queries: action.payload
+        queries: action.payload,
+        page: action.page,
+        totalPage: action.totalPage,
+        totalResults: action.totalResults
       };
     case GET_ON_AIR_TV_SHOWS:
       return {
         ...state,
-        queries: action.payload
+        queries: action.payload,
+        page: action.page,
+        totalPage: action.totalPage,
+        totalResults: action.totalResults
       };
     case GET_POPULAR_TV_SHOWS:
       return {
         ...state,
-        queries: action.payload
+        queries: action.payload,
+        page: action.page,
+        totalPage: action.totalPage,
+        totalResults: action.totalResults
       };
     case GET_TOP_RATED_SHOWS:
       return {
         ...state,
-        queries: action.payload
+        queries: action.payload,
+        page: action.page,
+        totalPage: action.totalPage,
+        totalResults: action.totalResults
       };
     case GET_SEARCH_MOVIES_TVS:
       return {
         ...state,
-        queries: action.payload
+        queries: action.payload,
+        page: action.page,
+        totalPage: action.totalPage,
+        totalResults: action.totalResults
       };
     case GET_ERROR:
       return {
@@ -103,7 +127,10 @@ const movieTvReducer = (state = initialState, action) => {
       return {
         ...state,
         genres: [],
-        queries: []
+        queries: [],
+        page: null,
+        totalPage: null,
+        totalResults: null
       };
     default:
       return state;

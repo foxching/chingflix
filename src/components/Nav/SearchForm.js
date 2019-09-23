@@ -10,12 +10,7 @@ const styles = theme => ({
   grow: {
     flexGrow: 0.9
   },
-  title: {
-    display: "none",
-    [theme.breakpoints.up("sm")]: {
-      display: "block"
-    }
-  },
+
   search: {
     position: "relative",
     borderRadius: theme.shape.borderRadius,
@@ -25,9 +20,11 @@ const styles = theme => ({
     },
     marginLeft: 0,
     width: "100%",
+    display: "none",
     [theme.breakpoints.up("sm")]: {
       marginLeft: theme.spacing(1),
-      width: "auto"
+      width: "auto",
+      display: "block"
     }
   },
   searchIcon: {

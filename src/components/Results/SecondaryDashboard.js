@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import {
   getMoviesbyGenre,
@@ -12,24 +13,28 @@ import {
 } from "../../actions/movieTvActions";
 import Action from "../Action/Action";
 import ResultsList from "./ResultsList";
+import Pagination from "../Pagination/Pagination";
 
 class SecondaryDashboard extends Component {
+  state = {
+    pageNum: 1
+  };
   handleGoBack = () => {
     this.props.history.goBack("/");
   };
 
   UNSAFE_componentWillMount() {
-    this.loadData(this.props.location.state.slug);
+    this.loadData(this.props.location.state.slug, this.state.pageNum);
   }
 
   UNSAFE_componentWillReceiveProps(nextProps) {
     if (nextProps.location.state.slug !== this.props.location.state.slug) {
-      this.loadData(nextProps.location.state.slug);
+      this.loadData(nextProps.location.state.slug, this.state.pageNum);
     }
   }
 
-  loadData = state => {
-    switch (state) {
+  loadData = (slug, pageNum) => {
+    switch (slug) {
       case "movies":
         this.props.getMoviesbyGenre(this.props.location.state.id);
         break;
@@ -37,22 +42,22 @@ class SecondaryDashboard extends Component {
         this.props.getTvsbyGenre(this.props.location.state.id);
         break;
       case "now-playing":
-        this.props.getLatestMovies();
+        this.props.getLatestMovies(pageNum);
         break;
       case "upcoming":
-        this.props.getUpcomingMovies();
+        this.props.getUpcomingMovies(pageNum);
         break;
       case "popular_movies":
-        this.props.getTrendingMovies();
+        this.props.getTrendingMovies(pageNum);
         break;
       case "airing-today":
-        this.props.getOnAirTvShows();
+        this.props.getOnAirTvShows(pageNum);
         break;
       case "popular_shows":
-        this.props.getPopularTvShows();
+        this.props.getPopularTvShows(pageNum);
         break;
       case "top_rated_shows":
-        this.props.getTopRatedShows();
+        this.props.getTopRatedShows(pageNum);
         break;
       default:
         return {};
@@ -60,7 +65,7 @@ class SecondaryDashboard extends Component {
   };
 
   render() {
-    const { queries, loading } = this.props;
+    const { queries, loading, page, totalPage, totalResults } = this.props;
     return (
       <div>
         <main>
@@ -72,6 +77,13 @@ class SecondaryDashboard extends Component {
             queries={queries}
           />
           <ResultsList queries={queries} loading={loading} />
+          <Pagination
+            slug={this.props.location.state.slug}
+            loadData={this.loadData}
+            page={page}
+            totalPage={totalPage}
+            totalResults={totalResults}
+          />
         </main>
       </div>
     );
@@ -81,6 +93,9 @@ class SecondaryDashboard extends Component {
 const mapState = state => {
   return {
     queries: state.moviesTvs.queries,
+    page: state.moviesTvs.page,
+    totalPage: state.moviesTvs.totalPage,
+    totalResults: state.moviesTvs.totalResults,
     loading: state.moviesTvs.loading
   };
 };

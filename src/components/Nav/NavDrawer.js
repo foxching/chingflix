@@ -36,6 +36,7 @@ import SearchDashboard from "../Search/SearchDashboard";
 import MainDashboard from "../Genres/MainDashboard";
 import SecondaryDashboard from "../Results/SecondaryDashboard";
 import SearchForm from "./SearchForm";
+import { textAlign } from "@material-ui/system";
 
 const drawerWidth = 250;
 
@@ -93,6 +94,13 @@ const styles = theme => ({
       duration: theme.transitions.duration.enteringScreen
     }),
     marginLeft: 0
+  },
+  title: {
+    display: "block",
+    textAlign: "center",
+    [theme.breakpoints.up("sm")]: {
+      display: "block"
+    }
   }
 });
 
@@ -113,7 +121,7 @@ class NavDrawer extends React.Component {
   };
 
   render() {
-    const { classes, theme, setter } = this.props;
+    const { classes, theme } = this.props;
     const { open } = this.state;
 
     return (
