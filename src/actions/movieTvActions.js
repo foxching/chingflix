@@ -51,16 +51,24 @@ export const getTvsGenres = () => {
   };
 };
 
-export const getMoviesbyGenre = genreId => {
+export const getMoviesbyGenre = (genreId, pageNum) => {
   return async dispatch => {
     try {
       dispatch({ type: CLEAR_RESULTS });
       dispatch({ type: START_FETCH });
       await delay(1000);
+
       const response = await axios.get(
-        `https://cors-anywhere.herokuapp.com/https://api.themoviedb.org/3/discover/movie?api_key=d3de272397bb7105279e2c887f31f0bb&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=true&page=1&with_genres=${genreId}`
+        `https://cors-anywhere.herokuapp.com/https://api.themoviedb.org/3/discover/movie?api_key=d3de272397bb7105279e2c887f31f0bb&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=true&page=${pageNum}&with_genres=${genreId}`
       );
-      dispatch({ type: GET_MOVIES_BY_GENRE, payload: response.data.results });
+      console.log(response.data);
+      dispatch({
+        type: GET_MOVIES_BY_GENRE,
+        payload: response.data.results,
+        page: response.data.page,
+        totalPage: response.data.total_pages,
+        totalResults: response.data.total_results
+      });
       dispatch({ type: END_FETCH });
     } catch (error) {
       dispatch({ type: GET_ERROR });
@@ -68,16 +76,23 @@ export const getMoviesbyGenre = genreId => {
   };
 };
 
-export const getTvsbyGenre = genreId => {
+export const getTvsbyGenre = (genreId, pageNum) => {
   return async dispatch => {
     try {
       dispatch({ type: CLEAR_RESULTS });
       dispatch({ type: START_FETCH });
       await delay(1000);
       const response = await axios.get(
-        `https://cors-anywhere.herokuapp.com/https://api.themoviedb.org/3/discover/tv?api_key=d3de272397bb7105279e2c887f31f0bb&language=en-US&sort_by=popularity.desc&page=1&timezone=America%2FNew_York&with_genres=${genreId}&include_null_first_air_dates=false`
+        `https://cors-anywhere.herokuapp.com/https://api.themoviedb.org/3/discover/tv?api_key=d3de272397bb7105279e2c887f31f0bb&language=en-US&sort_by=popularity.desc&page=${pageNum}&timezone=America%2FNew_York&with_genres=${genreId}&include_null_first_air_dates=false`
       );
-      dispatch({ type: GET_TVS_BY_GENRE, payload: response.data.results });
+      console.log(response.data);
+      dispatch({
+        type: GET_TVS_BY_GENRE,
+        payload: response.data.results,
+        page: response.data.page,
+        totalPage: response.data.total_pages,
+        totalResults: response.data.total_results
+      });
       dispatch({ type: END_FETCH });
     } catch (error) {
       dispatch({ type: GET_ERROR });
@@ -92,7 +107,7 @@ export const getLatestMovies = pageNum => {
       dispatch({ type: START_FETCH });
       await delay(1000);
       const response = await axios.get(
-        `https://cors-anywhere.herokuapp.com/https://api.themoviedb.org/3/movie/now_playing?api_key=d3de272397bb7105279e2c887f31f0bb&language=en-US&page=${pageNum}&region=US`
+        `https://cors-anywhere.herokuapp.com/https://api.themoviedb.org/3/movie/now_playing?api_key=d3de272397bb7105279e2c887f31f0bb&language=en-US,PH&page=${pageNum}&region=US`
       );
       console.log(response.data);
       dispatch({
@@ -156,7 +171,7 @@ export const getTrendingMovies = pageNum => {
   };
 };
 
-export const getOnAirTvShows = pagenUm => {
+export const getOnAirTvShows = pageNum => {
   return async dispatch => {
     try {
       dispatch({ type: CLEAR_RESULTS });
@@ -229,18 +244,24 @@ export const getTopRatedShows = pageNum => {
   };
 };
 
-export const getSearchMoviesTvs = searchText => {
+export const getSearchMoviesTvs = (searchText, pageNum) => {
   return async dispatch => {
     try {
       dispatch({ type: CLEAR_RESULTS });
       dispatch({ type: START_FETCH });
       await delay(1000);
       const response = await axios.get(
-        `https://cors-anywhere.herokuapp.com/https://api.themoviedb.org/3/search/multi?api_key=d3de272397bb7105279e2c887f31f0bb&language=en-US&append_to_response=images&include_image_language=en,null&query=${searchText}&page=1&include_adult=false`
+        `https://cors-anywhere.herokuapp.com/https://api.themoviedb.org/3/search/multi?api_key=d3de272397bb7105279e2c887f31f0bb&language=en-US&append_to_response=images&include_image_language=en,null&query=${searchText}&page=${pageNum}&include_adult=false`
       );
       console.log(response.data);
 
-      dispatch({ type: GET_SEARCH_MOVIES_TVS, payload: response.data.results });
+      dispatch({
+        type: GET_SEARCH_MOVIES_TVS,
+        payload: response.data.results,
+        page: response.data.page,
+        totalPage: response.data.total_pages,
+        totalResults: response.data.total_results
+      });
 
       dispatch({ type: END_FETCH });
     } catch (error) {

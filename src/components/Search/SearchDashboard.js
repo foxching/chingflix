@@ -3,27 +3,54 @@ import { connect } from "react-redux";
 import { getSearchMoviesTvs } from "../../actions/movieTvActions";
 import Action from "../Action/Action";
 import ResultsList from "../Results/ResultsList";
+import Pagination from "../Pagination/Pagination";
 
 class SearchDashboard extends Component {
+  state = {
+    pageNum: 1,
+    searchTxt: this.props.location.state.detail
+  };
+
   UNSAFE_componentWillMount() {
-    this.getSearch(this.props.location.state.detail);
+    this.loadData(
+      this.props.location.state.slug,
+      this.props.location.state.detail,
+      this.state.pageNum
+    );
   }
 
   UNSAFE_componentWillReceiveProps(nextProps) {
     if (this.props.location.state.detail !== nextProps.location.state.detail) {
-      this.getSearch(nextProps.location.state.detail);
+      this.loadData(
+        this.props.location.state.slug,
+        nextProps.location.state.detail,
+        this.state.pageNum
+      );
+      this.setState({ searchTxt: nextProps.location.state.detail });
     }
   }
 
-  getSearch = detail => [this.props.getSearchMoviesTvs(detail)];
+  loadData = (slug, detail, pageNum) => {
+    if (slug === "search") {
+      this.props.getSearchMoviesTvs(detail, pageNum);
+    }
+  };
 
   render() {
-    const { queries, loading } = this.props;
+    const { queries, loading, page, totalPage, totalResults } = this.props;
     return (
       <div>
         <main>
           <Action name="Search Results" loading={loading} />
           <ResultsList queries={queries} loading={loading} />
+          <Pagination
+            slug={this.props.location.state.slug}
+            searchTxt={this.state.searchTxt}
+            loadData={this.loadData}
+            page={page}
+            totalPage={totalPage}
+            totalResults={totalResults}
+          />
         </main>
       </div>
     );
@@ -33,7 +60,10 @@ class SearchDashboard extends Component {
 const mapState = state => {
   return {
     queries: state.moviesTvs.queries,
-    loading: state.moviesTvs.loading
+    loading: state.moviesTvs.loading,
+    page: state.moviesTvs.page,
+    totalPage: state.moviesTvs.totalPage,
+    totalResults: state.moviesTvs.totalResults
   };
 };
 

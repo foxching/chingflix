@@ -53,13 +53,19 @@ const movieTvReducer = (state = initialState, action) => {
     case GET_MOVIES_BY_GENRE:
       return {
         ...state,
-        queries: action.payload
+        queries: action.payload,
+        page: action.page,
+        totalPage: action.totalPage,
+        totalResults: action.totalResults
       };
 
     case GET_TVS_BY_GENRE:
       return {
         ...state,
-        queries: action.payload
+        queries: action.payload,
+        page: action.page,
+        totalPage: action.totalPage,
+        totalResults: action.totalResults
       };
 
     case GET_MOVIE_LATEST:

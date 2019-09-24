@@ -36,7 +36,6 @@ import SearchDashboard from "../Search/SearchDashboard";
 import MainDashboard from "../Genres/MainDashboard";
 import SecondaryDashboard from "../Results/SecondaryDashboard";
 import SearchForm from "./SearchForm";
-import { textAlign } from "@material-ui/system";
 
 const drawerWidth = 250;
 

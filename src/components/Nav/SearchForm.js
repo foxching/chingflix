@@ -65,7 +65,11 @@ class SearchForm extends React.Component {
       this.props.history.push({
         pathname: "/search",
         search: `?q=${this.state.search}`,
-        state: { detail: this.state.search }
+        state: {
+          slug: "search",
+          detail: this.state.search,
+          headerName: "Search Results"
+        }
       });
     }
   };

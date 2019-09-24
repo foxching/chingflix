@@ -7,7 +7,8 @@ class Pagination extends React.Component {
     slug: this.props.slug,
     current_page: this.props.page,
     per_page: 20,
-    totalResults: this.props.totalResults
+    totalResults: this.props.totalResults,
+    search: this.props.searchTxt ? this.props.searchTxt : ""
   };
 
   UNSAFE_componentWillReceiveProps(nextProps) {
@@ -20,6 +21,10 @@ class Pagination extends React.Component {
 
     if (nextProps.totalResults !== this.props.totalResults) {
       this.setState({ totalResults: nextProps.totalResults });
+    }
+
+    if (nextProps.searchTxt !== this.props.searchTxt) {
+      this.setState({ search: nextProps.searchTxt });
     }
   }
 
@@ -42,15 +47,25 @@ class Pagination extends React.Component {
       renderPageNumbers = pageNumbers.map(pageNumber => {
         let classes =
           this.state.current_page === pageNumber ? styles.active : "";
-        return (
-          <span
-            key={pageNumber}
-            className={classes}
-            onClick={() => loadData(this.state.slug, pageNumber)}
-          >
-            {pageNumber}
-          </span>
-        );
+
+        if (
+          pageNumber === 1 ||
+          pageNumber === this.state.totalResults ||
+          (pageNumber >= this.state.current_page - 2 &&
+            pageNumber <= this.state.current_page + 2)
+        ) {
+          return (
+            <span
+              key={pageNumber}
+              className={classes}
+              onClick={() =>
+                loadData(this.state.slug, this.state.search, pageNumber)
+              }
+            >
+              {pageNumber}
+            </span>
+          );
+        }
       });
     }
 

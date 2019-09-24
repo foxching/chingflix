@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import {
   getMoviesbyGenre,
@@ -17,10 +16,8 @@ import Pagination from "../Pagination/Pagination";
 
 class SecondaryDashboard extends Component {
   state = {
-    pageNum: 1
-  };
-  handleGoBack = () => {
-    this.props.history.goBack("/");
+    pageNum: 1,
+    search: ""
   };
 
   UNSAFE_componentWillMount() {
@@ -29,17 +26,21 @@ class SecondaryDashboard extends Component {
 
   UNSAFE_componentWillReceiveProps(nextProps) {
     if (nextProps.location.state.slug !== this.props.location.state.slug) {
-      this.loadData(nextProps.location.state.slug, this.state.pageNum);
+      this.loadData(
+        nextProps.location.state.slug,
+        this.state.search,
+        this.state.pageNum
+      );
     }
   }
 
-  loadData = (slug, pageNum) => {
+  loadData = (slug, search, pageNum) => {
     switch (slug) {
       case "movies":
-        this.props.getMoviesbyGenre(this.props.location.state.id);
+        this.props.getMoviesbyGenre(this.props.location.state.id, pageNum);
         break;
       case "tvs":
-        this.props.getTvsbyGenre(this.props.location.state.id);
+        this.props.getTvsbyGenre(this.props.location.state.id, pageNum);
         break;
       case "now-playing":
         this.props.getLatestMovies(pageNum);
@@ -72,18 +73,19 @@ class SecondaryDashboard extends Component {
           <Action
             loading={loading}
             name={this.props.location.state.headerName}
-            handleGoBack={this.handleGoBack}
             id={this.props.location.state.id}
             queries={queries}
           />
           <ResultsList queries={queries} loading={loading} />
-          <Pagination
-            slug={this.props.location.state.slug}
-            loadData={this.loadData}
-            page={page}
-            totalPage={totalPage}
-            totalResults={totalResults}
-          />
+          {queries.length > 0 && (
+            <Pagination
+              slug={this.props.location.state.slug}
+              loadData={this.loadData}
+              page={page}
+              totalPage={totalPage}
+              totalResults={totalResults}
+            />
+          )}
         </main>
       </div>
     );
