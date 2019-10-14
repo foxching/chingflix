@@ -1,12 +1,9 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import GenreList from "./GenreList";
 import Action from "../Action/Action";
-import {
-  getMoviesGenres,
-  getTvsGenres,
-  clearResults
-} from "../../actions/movieTvActions";
+import { getMoviesGenres, getTvsGenres } from "../../actions/movieTvActions";
 
 class MainDashboard extends Component {
   state = {
@@ -54,6 +51,12 @@ class MainDashboard extends Component {
     );
   }
 }
+
+MainDashboard.propTypes = {
+  genres: PropTypes.array.isRequired,
+  loading: PropTypes.bool.isRequired
+};
+
 const mapState = state => {
   return {
     genres: state.moviesTvs.genres,
@@ -63,9 +66,9 @@ const mapState = state => {
 
 const actions = {
   getMoviesGenres,
-  getTvsGenres,
-  clearResults
+  getTvsGenres
 };
+
 export default connect(
   mapState,
   actions

@@ -133,10 +133,7 @@ const movieTvReducer = (state = initialState, action) => {
       return {
         ...state,
         genres: [],
-        queries: [],
-        page: null,
-        totalPage: null,
-        totalResults: null
+        queries: []
       };
     default:
       return state;

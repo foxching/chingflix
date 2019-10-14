@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { withStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
@@ -45,6 +46,13 @@ const GenreList = props => {
       </Container>
     </div>
   );
+};
+
+GenreList.protoTypes = {
+  classes: PropTypes.object.isRequired,
+  genres: PropTypes.object.isRequired,
+  loading: PropTypes.bool.isRequired,
+  url: PropTypes.string.isRequired
 };
 
 export default withStyles(styles, { withTheme: true })(GenreList);

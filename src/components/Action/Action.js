@@ -21,10 +21,8 @@ const Action = props => {
     toggle,
     handleGetMovieGenres,
     handleGetTvGenres,
-    handleGoBack,
     loading,
-    name,
-    id
+    name
   } = props;
   return (
     <div className={classes.heroContent}>
@@ -58,20 +56,7 @@ const Action = props => {
                   </Button>
                 </Grid>
               </React.Fragment>
-            ) : (
-              <Grid item>
-                {id && handleGoBack && (
-                  <Button
-                    onClick={handleGoBack}
-                    size="large"
-                    variant="contained"
-                    color="secondary"
-                  >
-                    Go Back
-                  </Button>
-                )}
-              </Grid>
-            )}
+            ) : null}
           </Grid>
         </div>
       </Container>
@@ -81,7 +66,12 @@ const Action = props => {
 
 Action.propTypes = {
   classes: PropTypes.object.isRequired,
-  theme: PropTypes.object.isRequired
+  theme: PropTypes.object.isRequired,
+  toggle: PropTypes.bool,
+  handleGetMovieGenres: PropTypes.func,
+  handleGetTvGenres: PropTypes.func,
+  loading: PropTypes.bool.isRequired,
+  name: PropTypes.string.isRequired
 };
 
 export default withStyles(styles, { withTheme: true })(Action);

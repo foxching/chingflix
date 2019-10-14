@@ -77,15 +77,13 @@ class SecondaryDashboard extends Component {
             queries={queries}
           />
           <ResultsList queries={queries} loading={loading} />
-          {queries.length > 0 && (
-            <Pagination
-              slug={this.props.location.state.slug}
-              loadData={this.loadData}
-              page={page}
-              totalPage={totalPage}
-              totalResults={totalResults}
-            />
-          )}
+          <Pagination
+            slug={this.props.location.state.slug}
+            loadData={this.loadData}
+            page={page}
+            totalPage={totalPage}
+            totalResults={totalResults}
+          />
         </main>
       </div>
     );
