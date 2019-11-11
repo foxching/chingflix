@@ -16,8 +16,12 @@ function MadeWithLove() {
 const useStyles = makeStyles(theme => ({
   footer: {
     backgroundColor: theme.palette.background.paper,
-    padding: theme.spacing(6),
-    marginTop: "auto"
+    position: "fixed",
+    left: 0,
+    bottom: 0,
+    width: "100%",
+    color: "white",
+    textAlign: "center"
   }
 }));
 

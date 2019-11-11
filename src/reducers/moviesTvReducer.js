@@ -19,7 +19,7 @@ import {
 const initialState = {
   genres: [],
   queries: [],
-  error: "",
+  error: false,
   loading: false,
   page: null,
   totalPage: null,
@@ -43,16 +43,19 @@ const movieTvReducer = (state = initialState, action) => {
     case GET_MOVIE_GENRES:
       return {
         ...state,
+        error: false,
         genres: action.payload
       };
     case GET_TV_GENRES:
       return {
         ...state,
+        error: false,
         genres: action.payload
       };
     case GET_MOVIES_BY_GENRE:
       return {
         ...state,
+        error: false,
         queries: action.payload,
         page: action.page,
         totalPage: action.totalPage,
@@ -62,6 +65,7 @@ const movieTvReducer = (state = initialState, action) => {
     case GET_TVS_BY_GENRE:
       return {
         ...state,
+        error: false,
         queries: action.payload,
         page: action.page,
         totalPage: action.totalPage,
@@ -71,6 +75,7 @@ const movieTvReducer = (state = initialState, action) => {
     case GET_MOVIE_LATEST:
       return {
         ...state,
+        error: false,
         queries: action.payload,
         page: action.page,
         totalPage: action.totalPage,
@@ -79,6 +84,7 @@ const movieTvReducer = (state = initialState, action) => {
     case GET_MOVIE_UPCOMING:
       return {
         ...state,
+        error: false,
         queries: action.payload,
         page: action.page,
         totalPage: action.totalPage,
@@ -87,6 +93,7 @@ const movieTvReducer = (state = initialState, action) => {
     case GET_TRENDING_MOVIES:
       return {
         ...state,
+        error: false,
         queries: action.payload,
         page: action.page,
         totalPage: action.totalPage,
@@ -95,6 +102,7 @@ const movieTvReducer = (state = initialState, action) => {
     case GET_ON_AIR_TV_SHOWS:
       return {
         ...state,
+        error: false,
         queries: action.payload,
         page: action.page,
         totalPage: action.totalPage,
@@ -103,6 +111,7 @@ const movieTvReducer = (state = initialState, action) => {
     case GET_POPULAR_TV_SHOWS:
       return {
         ...state,
+        error: false,
         queries: action.payload,
         page: action.page,
         totalPage: action.totalPage,
@@ -111,6 +120,7 @@ const movieTvReducer = (state = initialState, action) => {
     case GET_TOP_RATED_SHOWS:
       return {
         ...state,
+        error: false,
         queries: action.payload,
         page: action.page,
         totalPage: action.totalPage,
@@ -119,6 +129,7 @@ const movieTvReducer = (state = initialState, action) => {
     case GET_SEARCH_MOVIES_TVS:
       return {
         ...state,
+        error: false,
         queries: action.payload,
         page: action.page,
         totalPage: action.totalPage,
@@ -127,7 +138,8 @@ const movieTvReducer = (state = initialState, action) => {
     case GET_ERROR:
       return {
         ...state,
-        error: "Error Loading Data"
+        error: true,
+        loading: false
       };
     case CLEAR_RESULTS:
       return {

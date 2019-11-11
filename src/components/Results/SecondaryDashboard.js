@@ -13,6 +13,7 @@ import {
 import Action from "../Action/Action";
 import ResultsList from "./ResultsList";
 import Pagination from "../Pagination/Pagination";
+import Error from "../Error/Error";
 
 class SecondaryDashboard extends Component {
   state = {
@@ -66,24 +67,39 @@ class SecondaryDashboard extends Component {
   };
 
   render() {
-    const { queries, loading, page, totalPage, totalResults } = this.props;
+    const {
+      queries,
+      loading,
+      page,
+      totalPage,
+      totalResults,
+      error
+    } = this.props;
     return (
       <div>
         <main>
-          <Action
-            loading={loading}
-            name={this.props.location.state.headerName}
-            id={this.props.location.state.id}
-            queries={queries}
-          />
-          <ResultsList queries={queries} loading={loading} />
-          <Pagination
-            slug={this.props.location.state.slug}
-            loadData={this.loadData}
-            page={page}
-            totalPage={totalPage}
-            totalResults={totalResults}
-          />
+          {!error ? (
+            <div>
+              <Action
+                loading={loading}
+                name={this.props.location.state.headerName}
+                id={this.props.location.state.id}
+                queries={queries}
+              />
+              <ResultsList queries={queries} loading={loading} />
+              <Pagination
+                slug={this.props.location.state.slug}
+                loadData={this.loadData}
+                page={page}
+                totalPage={totalPage}
+                totalResults={totalResults}
+              />
+            </div>
+          ) : (
+            <div>
+              <Error />
+            </div>
+          )}
         </main>
       </div>
     );
@@ -96,7 +112,8 @@ const mapState = state => {
     page: state.moviesTvs.page,
     totalPage: state.moviesTvs.totalPage,
     totalResults: state.moviesTvs.totalResults,
-    loading: state.moviesTvs.loading
+    loading: state.moviesTvs.loading,
+    error: state.moviesTvs.error
   };
 };
 
