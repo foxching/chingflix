@@ -107,7 +107,7 @@ export const getLatestMovies = pageNum => {
       dispatch({ type: START_FETCH });
       await delay(1000);
       const response = await axios.get(
-        `https://cors-anywhere.herokuapp.com/https://api.themoviedb.org/3/movie/now_playing?api_key=d3de272397bb7105279e2c887f31f0bb&language=en-US,PH&page=${pageNum}&region=US`
+        `https://cors-anywhere.herokuapp.com/https://api.themoviedb.org/3/movie/now_playing?api_key=1d3de272397bb7105279e2c887f31f0bb&language=en-US,PH&page=${pageNum}&region=US`
       );
       console.log(response.data);
       dispatch({

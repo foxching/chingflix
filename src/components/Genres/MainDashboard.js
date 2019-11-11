@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import GenreList from "./GenreList";
 import Action from "../Action/Action";
+import Error from "../Error/Error";
 import { getMoviesGenres, getTvsGenres } from "../../actions/movieTvActions";
 
 class MainDashboard extends Component {
@@ -36,19 +37,27 @@ class MainDashboard extends Component {
 
   render() {
     const { toggle, url } = this.state;
-    const { genres, loading } = this.props;
-    return (
+    const { genres, loading, error } = this.props;
+    let genre = (
       <div>
-        <Action
-          loading={loading}
-          name={this.state.name}
-          toggle={toggle}
-          handleGetMovieGenres={this.handleGetMovieGenres}
-          handleGetTvGenres={this.handleGetTvGenres}
-        />
-        <GenreList url={url} genres={genres} loading={loading} />
+        <Error />
       </div>
     );
+    if (!error) {
+      genre = (
+        <div>
+          <Action
+            loading={loading}
+            name={this.state.name}
+            toggle={toggle}
+            handleGetMovieGenres={this.handleGetMovieGenres}
+            handleGetTvGenres={this.handleGetTvGenres}
+          />
+          <GenreList url={url} genres={genres} loading={loading} />
+        </div>
+      );
+    }
+    return genre;
   }
 }
 
@@ -60,7 +69,8 @@ MainDashboard.propTypes = {
 const mapState = state => {
   return {
     genres: state.moviesTvs.genres,
-    loading: state.moviesTvs.loading
+    loading: state.moviesTvs.loading,
+    error: state.moviesTvs.error
   };
 };
 
