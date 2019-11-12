@@ -77,30 +77,26 @@ class SecondaryDashboard extends Component {
     } = this.props;
     return (
       <div>
-        <main>
-          {!error ? (
-            <div>
-              <Action
-                loading={loading}
-                name={this.props.location.state.headerName}
-                id={this.props.location.state.id}
-                queries={queries}
-              />
-              <ResultsList queries={queries} loading={loading} />
-              <Pagination
-                slug={this.props.location.state.slug}
-                loadData={this.loadData}
-                page={page}
-                totalPage={totalPage}
-                totalResults={totalResults}
-              />
-            </div>
-          ) : (
-            <div>
-              <Error />
-            </div>
-          )}
-        </main>
+        {!error ? (
+          <div>
+            <Action
+              loading={loading}
+              name={this.props.location.state.headerName}
+              id={this.props.location.state.id}
+              queries={queries}
+            />
+            <ResultsList queries={queries} loading={loading} />
+            <Pagination
+              slug={this.props.location.state.slug}
+              loadData={this.loadData}
+              page={page}
+              totalPage={totalPage}
+              totalResults={totalResults}
+            />
+          </div>
+        ) : (
+          <Error />
+        )}
       </div>
     );
   }

@@ -1,6 +1,8 @@
 import React from "react";
+import { connect } from "react-redux";
+import { compose } from "redux";
 import Typography from "@material-ui/core/Typography";
-import { makeStyles } from "@material-ui/core/styles";
+import { withStyles } from "@material-ui/core/styles";
 import Link from "@material-ui/core/Link";
 
 function MadeWithLove() {
@@ -13,24 +15,27 @@ function MadeWithLove() {
     </Typography>
   );
 }
-const useStyles = makeStyles(theme => ({
+
+const styles = theme => ({
   footer: {
     backgroundColor: theme.palette.background.paper,
-    position: "fixed",
+    //position: "fixed",
     left: 0,
     bottom: 0,
     width: "100%",
-    color: "white",
     textAlign: "center"
   }
-}));
+});
 
-export default function Album() {
-  const classes = useStyles();
-
+const Footer = props => {
+  const { classes, error } = props;
+  let pos;
+  if (error) {
+    pos = "fixed";
+  }
   return (
     <React.Fragment>
-      <footer className={classes.footer}>
+      <footer className={classes.footer} style={{ position: pos }}>
         <Typography variant="h6" align="center" gutterBottom>
           CHINGFLIX
         </Typography>
@@ -47,4 +52,15 @@ export default function Album() {
       {/* End footer */}
     </React.Fragment>
   );
-}
+};
+
+const mapState = state => {
+  return {
+    error: state.moviesTvs.error
+  };
+};
+
+export default compose(
+  connect(mapState),
+  withStyles(styles, { withTheme: true })
+)(Footer);
