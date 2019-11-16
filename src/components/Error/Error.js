@@ -8,15 +8,15 @@ import InfoIcon from "@material-ui/icons/Info";
 const styles = theme => ({
   root: {
     margin: "auto",
-    width: "50%",
+    width: "30%",
     position: "absolute",
     top: "45%",
     left: "30%",
     transform: "translateY(-50%)",
     padding: "50px",
     [theme.breakpoints.down("xs")]: {
-      width: "70%",
-      left: "15%"
+      width: "80%",
+      left: "11.3%"
     }
   },
   textTypo: {
@@ -33,7 +33,7 @@ const Error = props => {
     <div>
       <Paper className={classes.root} elevation={1}>
         <Typography className={classes.textTypo} variant="h5" component="h3">
-          <InfoIcon /> Something Went Wrong.Please try again!
+          <InfoIcon /> Please try again!
         </Typography>
       </Paper>
     </div>
