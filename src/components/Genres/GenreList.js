@@ -28,7 +28,7 @@ const GenreList = props => {
               <Grid item key={id} xs={6} sm={6} md={3}>
                 <Link
                   to={{
-                    pathname: `/${url}/${name}`,
+                    pathname: `/genres/${url}/${name}`,
                     id: `${id}`,
                     state: {
                       slug: `${url}`,

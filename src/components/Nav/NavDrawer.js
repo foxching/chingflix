@@ -35,6 +35,7 @@ import OndemandVideo from "@material-ui/icons/OndemandVideo";
 import SearchDashboard from "../Search/SearchDashboard";
 import MainDashboard from "../Genres/MainDashboard";
 import SecondaryDashboard from "../Results/SecondaryDashboard";
+import MovieTvDetailedPage from "../MovieTvDetailed/MovieTvDetailedPage";
 import SearchForm from "./SearchForm";
 
 const drawerWidth = 250;
@@ -185,8 +186,11 @@ class NavDrawer extends React.Component {
                   button
                   component={Link}
                   to={{
-                    pathname: "/movies/now-playing",
-                    state: { slug: "now-playing", headerName: "Now Playing" }
+                    pathname: "/discover/movies/now-playing",
+                    state: {
+                      slug: "now-playing",
+                      headerName: "Now Playing"
+                    }
                   }}
                 >
                   <ListItemIcon>
@@ -198,8 +202,11 @@ class NavDrawer extends React.Component {
                   button
                   component={Link}
                   to={{
-                    pathname: "/movies/upcoming",
-                    state: { slug: "upcoming", headerName: "Upcoming Movies" }
+                    pathname: "/discover/movies/upcoming",
+                    state: {
+                      slug: "upcoming",
+                      headerName: "Upcoming Movies"
+                    }
                   }}
                 >
                   <ListItemIcon>
@@ -211,7 +218,7 @@ class NavDrawer extends React.Component {
                   button
                   component={Link}
                   to={{
-                    pathname: "/movies/popular",
+                    pathname: "/discover/movies/popular",
                     state: {
                       slug: "popular_movies",
                       headerName: "Popular Movies"
@@ -233,8 +240,11 @@ class NavDrawer extends React.Component {
                   button
                   component={Link}
                   to={{
-                    pathname: "/tvs/airing-today",
-                    state: { slug: "airing-today", headerName: "On Air Shows" }
+                    pathname: "/discover/tvs/airing-today",
+                    state: {
+                      slug: "airing-today",
+                      headerName: "On Air Shows"
+                    }
                   }}
                 >
                   <ListItemIcon>
@@ -246,7 +256,7 @@ class NavDrawer extends React.Component {
                   button
                   component={Link}
                   to={{
-                    pathname: "/tvs/popular",
+                    pathname: "/discover/tvs/popular",
                     state: {
                       slug: "popular_shows",
                       headerName: "Popular TV Shows"
@@ -262,7 +272,7 @@ class NavDrawer extends React.Component {
                   button
                   component={Link}
                   to={{
-                    pathname: "/tvs/top-rated",
+                    pathname: "/discover/tvs/top-rated",
                     state: {
                       slug: "top_rated_shows",
                       headerName: "Top Rated TV Shows"
@@ -285,7 +295,16 @@ class NavDrawer extends React.Component {
                 <Switch>
                   <Route exact path="/" component={MainDashboard} />
                   <Route path="/search" component={SearchDashboard} />
-                  <Route path="/:genre/:name" component={SecondaryDashboard} />
+                  <Route
+                    exact={true}
+                    path="/:urlTag/:genre/:name"
+                    component={SecondaryDashboard}
+                  />
+                  <Route
+                    exact={true}
+                    path="/:urlTag/:id"
+                    component={MovieTvDetailedPage}
+                  />
                 </Switch>
               </div>
             </main>

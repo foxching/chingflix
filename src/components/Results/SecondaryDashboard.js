@@ -85,7 +85,12 @@ class SecondaryDashboard extends Component {
               id={this.props.location.state.id}
               queries={queries}
             />
-            <ResultsList queries={queries} loading={loading} />
+            <ResultsList
+              url={this.props.match.url}
+              path={this.props.match.path}
+              queries={queries}
+              loading={loading}
+            />
             <Pagination
               slug={this.props.location.state.slug}
               loadData={this.loadData}

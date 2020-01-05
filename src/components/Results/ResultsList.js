@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { withStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
@@ -16,8 +17,14 @@ const styles = theme => ({
 });
 
 const ResultsList = props => {
-  const { classes, queries, loading } = props;
+  const { classes, queries, loading, url, path } = props;
+  let urlTag;
+  if (url) {
+    urlTag = url.split("/")[2];
+  }
 
+  console.log(url);
+  console.log(path);
   return (
     <React.Fragment>
       <Grid container spacing={5} align="center" justify="center">
@@ -28,7 +35,17 @@ const ResultsList = props => {
           {queries &&
             queries.map(query => (
               <Grid key={query.id} item xs={12} sm={6}>
-                <ResultsListItem query={query} />
+                <Link
+                  to={{
+                    pathname: `/${
+                      query.media_type ? query.media_type : urlTag
+                    }/${query.id}`,
+                    state: { id: query.id }
+                  }}
+                  style={{ textDecoration: "none" }}
+                >
+                  <ResultsListItem query={query} />
+                </Link>
               </Grid>
             ))}
         </Grid>

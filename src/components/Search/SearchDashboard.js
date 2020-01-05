@@ -38,6 +38,7 @@ class SearchDashboard extends Component {
 
   render() {
     const { queries, loading, page, totalPage, totalResults } = this.props;
+    console.log(queries);
     return (
       <div>
         <main>
