@@ -9,7 +9,7 @@ import { getMoviesGenres, getTvsGenres } from "../../actions/movieTvActions";
 class MainDashboard extends Component {
   state = {
     toggle: false,
-    url: "movies",
+    url: "movie",
     name: "Genre List"
   };
 
@@ -23,7 +23,7 @@ class MainDashboard extends Component {
     this.props.getMoviesGenres();
     this.setState(prevState => ({
       toggle: !prevState.toggle,
-      url: "movies"
+      url: "movie"
     }));
   };
 
@@ -31,7 +31,7 @@ class MainDashboard extends Component {
     this.props.getTvsGenres();
     this.setState(prevState => ({
       toggle: !prevState.toggle,
-      url: "tvs"
+      url: "tv"
     }));
   };
 

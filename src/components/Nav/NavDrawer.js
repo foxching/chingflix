@@ -186,7 +186,7 @@ class NavDrawer extends React.Component {
                   button
                   component={Link}
                   to={{
-                    pathname: "/discover/movies/now-playing",
+                    pathname: "/discover/movie/now-playing",
                     state: {
                       slug: "now-playing",
                       headerName: "Now Playing"
@@ -202,7 +202,7 @@ class NavDrawer extends React.Component {
                   button
                   component={Link}
                   to={{
-                    pathname: "/discover/movies/upcoming",
+                    pathname: "/discover/movie/upcoming",
                     state: {
                       slug: "upcoming",
                       headerName: "Upcoming Movies"
@@ -218,7 +218,7 @@ class NavDrawer extends React.Component {
                   button
                   component={Link}
                   to={{
-                    pathname: "/discover/movies/popular",
+                    pathname: "/discover/movie/popular",
                     state: {
                       slug: "popular_movies",
                       headerName: "Popular Movies"
@@ -240,7 +240,7 @@ class NavDrawer extends React.Component {
                   button
                   component={Link}
                   to={{
-                    pathname: "/discover/tvs/airing-today",
+                    pathname: "/discover/tv/airing-today",
                     state: {
                       slug: "airing-today",
                       headerName: "On Air Shows"
@@ -256,7 +256,7 @@ class NavDrawer extends React.Component {
                   button
                   component={Link}
                   to={{
-                    pathname: "/discover/tvs/popular",
+                    pathname: "/discover/tv/popular",
                     state: {
                       slug: "popular_shows",
                       headerName: "Popular TV Shows"
@@ -272,7 +272,7 @@ class NavDrawer extends React.Component {
                   button
                   component={Link}
                   to={{
-                    pathname: "/discover/tvs/top-rated",
+                    pathname: "/discover/tvstop-rated",
                     state: {
                       slug: "top_rated_shows",
                       headerName: "Top Rated TV Shows"

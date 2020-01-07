@@ -17,14 +17,11 @@ const styles = theme => ({
 });
 
 const ResultsList = props => {
-  const { classes, queries, loading, url, path } = props;
+  const { classes, queries, loading, url } = props;
   let urlTag;
   if (url) {
     urlTag = url.split("/")[2];
   }
-
-  console.log(url);
-  console.log(path);
   return (
     <React.Fragment>
       <Grid container spacing={5} align="center" justify="center">
@@ -40,7 +37,7 @@ const ResultsList = props => {
                     pathname: `/${
                       query.media_type ? query.media_type : urlTag
                     }/${query.id}`,
-                    state: { id: query.id }
+                    state: { url: query.media_type ? query.media_type : urlTag }
                   }}
                   style={{ textDecoration: "none" }}
                 >

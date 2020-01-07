@@ -10,6 +10,8 @@ import {
   GET_POPULAR_TV_SHOWS,
   GET_TOP_RATED_SHOWS,
   GET_SEARCH_MOVIES_TVS,
+  GET_MOVIE_INFO,
+  GET_TV_INFO,
   GET_ERROR,
   START_FETCH,
   END_FETCH,
@@ -19,6 +21,8 @@ import {
 const initialState = {
   genres: [],
   queries: [],
+  movie: undefined,
+  tv: undefined,
   error: false,
   loading: false,
   page: null,
@@ -134,6 +138,20 @@ const movieTvReducer = (state = initialState, action) => {
         page: action.page,
         totalPage: action.totalPage,
         totalResults: action.totalResults
+      };
+    case GET_MOVIE_INFO:
+      return {
+        ...state,
+        error: false,
+        movie: action.payload,
+        tv: undefined
+      };
+    case GET_TV_INFO:
+      return {
+        ...state,
+        error: false,
+        tv: action.payload,
+        movie: undefined
       };
     case GET_ERROR:
       return {

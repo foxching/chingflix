@@ -37,10 +37,10 @@ class SecondaryDashboard extends Component {
 
   loadData = (slug, search, pageNum) => {
     switch (slug) {
-      case "movies":
+      case "movie":
         this.props.getMoviesbyGenre(this.props.location.state.id, pageNum);
         break;
-      case "tvs":
+      case "tv":
         this.props.getTvsbyGenre(this.props.location.state.id, pageNum);
         break;
       case "now-playing":
