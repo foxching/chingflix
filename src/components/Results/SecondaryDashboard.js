@@ -113,7 +113,7 @@ const mapState = state => {
     page: state.moviesTvs.page,
     totalPage: state.moviesTvs.totalPage,
     totalResults: state.moviesTvs.totalResults,
-    loading: state.moviesTvs.loading,
+    loading: state.async.loading,
     error: state.moviesTvs.error
   };
 };

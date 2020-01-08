@@ -13,8 +13,6 @@ import {
   GET_MOVIE_INFO,
   GET_TV_INFO,
   GET_ERROR,
-  START_FETCH,
-  END_FETCH,
   CLEAR_RESULTS
 } from "../actions/actionTypes";
 
@@ -24,7 +22,6 @@ const initialState = {
   movie: undefined,
   tv: undefined,
   error: false,
-  loading: false,
   page: null,
   totalPage: null,
   totalResults: null
@@ -32,18 +29,6 @@ const initialState = {
 
 const movieTvReducer = (state = initialState, action) => {
   switch (action.type) {
-    case START_FETCH: {
-      return {
-        ...state,
-        loading: true
-      };
-    }
-    case END_FETCH: {
-      return {
-        ...state,
-        loading: false
-      };
-    }
     case GET_MOVIE_GENRES:
       return {
         ...state,

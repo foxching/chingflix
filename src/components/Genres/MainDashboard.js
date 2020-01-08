@@ -69,7 +69,7 @@ MainDashboard.propTypes = {
 const mapState = state => {
   return {
     genres: state.moviesTvs.genres,
-    loading: state.moviesTvs.loading,
+    loading: state.async.loading,
     error: state.moviesTvs.error
   };
 };

@@ -11,10 +11,10 @@ export const GET_ON_AIR_TV_SHOWS = "GET_ON_AIR_TV_SHOWS ";
 export const GET_POPULAR_TV_SHOWS = "GET_POPULAR_TV_SHOWS";
 export const GET_TOP_RATED_SHOWS = "GET_TOP_RATED_SHOWS";
 export const GET_SEARCH_MOVIES_TVS = "GET_SEARCH_MOVIES_TVS";
-export const GET_ERROR = "GET ERROR";
 
 export const START_FETCH = "START_FETCH";
 export const END_FETCH = "END_FETCH";
+export const GET_ERROR = "GET ERROR";
 export const CLEAR_RESULTS = " CLEAR_RESULTS";
 
 export const GET_MOVIE_INFO = "GET_MOVIE_INFO";
