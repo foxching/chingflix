@@ -228,7 +228,7 @@ export const getTopRatedShows = pageNum => {
       dispatch(asyncActionStarted());
       await delay(1000);
       const response = await axios.get(
-        `https://cors-anywhere.herokuapp.com/https://api.themoviedb.org/3/tv/top_rated?api_key=d3de272397bb7105279e2c887f31f0bb&language=en-US&page=${pageNum}`
+        `https://api.themoviedb.org/3/tv/top_rated?api_key=d3de272397bb7105279e2c887f31f0bb&language=en-US&page=${pageNum}`
       );
 
       dispatch({
@@ -298,7 +298,7 @@ export const getTvInfo = tvId => {
       dispatch(asyncActionStarted());
       await delay(1000);
       const response = await axios.get(
-        `https://api.themoviedb.org/3/tv/${tvId}?api_key=d3de272397bb7105279e2c887f31f0bb&language=en-US`
+        `https://api.themoviedb.org/3/tv/${tvId}?api_key=d3de272397bb7105279e2c887f31f0bb`
       );
       dispatch({
         type: GET_TV_INFO,

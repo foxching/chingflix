@@ -272,7 +272,7 @@ class NavDrawer extends React.Component {
                   button
                   component={Link}
                   to={{
-                    pathname: "/discover/tvstop-rated",
+                    pathname: "/discover/tv/top-rated",
                     state: {
                       slug: "top_rated_shows",
                       headerName: "Top Rated TV Shows"
