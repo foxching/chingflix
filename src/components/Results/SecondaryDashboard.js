@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Helmet } from "react-helmet";
 import { connect } from "react-redux";
 import {
   getMoviesbyGenre,
@@ -75,10 +76,23 @@ class SecondaryDashboard extends Component {
       totalResults,
       error
     } = this.props;
+
+    const title = this.props.location.state.headerName;
+    const subTitle =
+      this.props.match.url
+        .split("/")[2]
+        .charAt(0)
+        .toUpperCase() + this.props.match.url.split("/")[2].substr(1);
     return (
       <div>
         {!error ? (
           <div>
+            <Helmet>
+              <title>
+                {title} {subTitle}s
+              </title>
+              <meta name="description" content={`${title} ${subTitle}`} />
+            </Helmet>
             <Action
               loading={loading}
               name={this.props.location.state.headerName}

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Helmet } from "react-helmet";
 import moment from "moment";
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
@@ -64,6 +65,10 @@ class TvDetailedInfo extends Component {
     const { setModalOpened, setmodalClosed } = this;
     return (
       <React.Fragment>
+        <Helmet>
+          <title>{title}</title>
+          <meta name="description" content={`${title}`} />
+        </Helmet>
         <Grid container spacing={4}>
           <Grid item md={3}>
             <img

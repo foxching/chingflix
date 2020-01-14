@@ -205,7 +205,7 @@ class NavDrawer extends React.Component {
                     pathname: "/discover/movie/upcoming",
                     state: {
                       slug: "upcoming",
-                      headerName: "Upcoming Movies"
+                      headerName: "Upcoming "
                     }
                   }}
                 >
@@ -221,7 +221,7 @@ class NavDrawer extends React.Component {
                     pathname: "/discover/movie/popular",
                     state: {
                       slug: "popular_movies",
-                      headerName: "Popular Movies"
+                      headerName: "Popular"
                     }
                   }}
                 >
@@ -243,7 +243,7 @@ class NavDrawer extends React.Component {
                     pathname: "/discover/tv/airing-today",
                     state: {
                       slug: "airing-today",
-                      headerName: "On Air Shows"
+                      headerName: "On Air "
                     }
                   }}
                 >
@@ -259,7 +259,7 @@ class NavDrawer extends React.Component {
                     pathname: "/discover/tv/popular",
                     state: {
                       slug: "popular_shows",
-                      headerName: "Popular TV Shows"
+                      headerName: "Popular "
                     }
                   }}
                 >
@@ -275,7 +275,7 @@ class NavDrawer extends React.Component {
                     pathname: "/discover/tv/top-rated",
                     state: {
                       slug: "top_rated_shows",
-                      headerName: "Top Rated TV Shows"
+                      headerName: "Top Rated"
                     }
                   }}
                 >

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import { Helmet } from "react-helmet";
 import { connect } from "react-redux";
 import GenreList from "./GenreList";
 import Action from "../Action/Action";
@@ -46,6 +47,10 @@ class MainDashboard extends Component {
     if (!error) {
       genre = (
         <div>
+          <Helmet>
+            <title>Home- Genre List</title>
+            <meta name="description" content="Genre List" />
+          </Helmet>
           <Action
             loading={loading}
             name={this.state.name}
