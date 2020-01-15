@@ -88,9 +88,11 @@ class SecondaryDashboard extends Component {
         {!error ? (
           <div>
             <Helmet>
+              (
               <title>
                 {title} {subTitle}s
               </title>
+              )
               <meta name="description" content={`${title} ${subTitle}`} />
             </Helmet>
             <Action

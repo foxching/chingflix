@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Helmet } from "react-helmet";
+import { Link } from "react-router-dom";
 import ModalVideo from "react-modal-video";
 import moment from "moment";
 import Grid from "@material-ui/core/Grid";
@@ -77,9 +78,22 @@ class MovieDetailedInfo extends Component {
             <Typography variant="subtitle1" gutterBottom>
               <strong>Genres:</strong>
               {movie.genres.map(genre => (
-                <span key={genre.id} style={{ color: "red" }}>
+                <span key={genre.id}>
                   {" "}
-                  {genre.name}
+                  <Link
+                    to={{
+                      pathname: `/genres/movie/${genre.name}`,
+                      state: {
+                        slug: "movie",
+                        id: `${genre.id}`,
+                        headerName: `${genre.name}`
+                      }
+                    }}
+                    style={{ color: "red" }}
+                  >
+                    {" "}
+                    {genre.name}
+                  </Link>
                   {", "}
                 </span>
               ))}
