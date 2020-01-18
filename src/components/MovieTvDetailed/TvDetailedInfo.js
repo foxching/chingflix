@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import moment from "moment";
 import Typography from "@material-ui/core/Typography";
@@ -28,7 +29,7 @@ class TvDetailedInfo extends Component {
 
   render() {
     const { tv } = this.props;
-
+    console.log(tv);
     let poster,
       title,
       date,
@@ -108,8 +109,20 @@ class TvDetailedInfo extends Component {
               <strong>Genres:</strong>
               {genres &&
                 genres.map(genre => (
-                  <span key={genre.id} style={{ color: "red" }}>
-                    {genre.name},
+                  <span key={genre.id}>
+                    <Link
+                      to={{
+                        pathname: `/genres/tv/${genre.name}`,
+                        state: {
+                          slug: "tv",
+                          id: `${genre.id}`,
+                          headerName: `${genre.name}`
+                        }
+                      }}
+                      style={{ color: "red" }}
+                    >
+                      {genre.name},
+                    </Link>
                   </span>
                 ))}
             </Typography>
@@ -218,7 +231,11 @@ function renderTrailer(videos, modalOpened, setmodalOpened, setmodalClosed) {
     return;
   }
   const { key } = videos.find(
-    video => video.type === "Trailer" && video.site === "YouTube"
+    video =>
+      (video.type === "Trailer" ||
+        video.type === "Featurette" ||
+        video.type === "Opening Credits") &&
+      video.site === "YouTube"
   );
   return (
     <React.Fragment>
