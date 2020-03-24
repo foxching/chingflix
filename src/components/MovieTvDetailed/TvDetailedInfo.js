@@ -108,7 +108,7 @@ class TvDetailedInfo extends Component {
             <Typography variant="subtitle1">
               <strong>Genres:</strong>
               {genres &&
-                genres.map(genre => (
+                genres.map((genre, index) => (
                   <span key={genre.id}>
                     <Link
                       to={{
@@ -121,7 +121,8 @@ class TvDetailedInfo extends Component {
                       }}
                       style={{ color: "red" }}
                     >
-                      {genre.name},
+                      {genre.name}
+                      {index !== genres.length - 1 && ","}
                     </Link>
                   </span>
                 ))}
@@ -129,9 +130,10 @@ class TvDetailedInfo extends Component {
             <Typography variant="subtitle1">
               <strong>Production Companies:</strong>
               {companies &&
-                companies.map(company => (
+                companies.map((company, index) => (
                   <span key={company.id} style={{ color: "red" }}>
-                    {company.name},
+                    {company.name}
+                    {index !== companies.length - 1 && ","}
                   </span>
                 ))}
             </Typography>
@@ -195,9 +197,10 @@ class TvDetailedInfo extends Component {
             <Typography variant="subtitle1">
               <strong>Language(s):</strong>
               {languages &&
-                languages.map(lang => (
+                languages.map((lang, index) => (
                   <span key={lang} style={{ color: "red" }}>
-                    {lang},
+                    {lang}
+                    {index !== languages.length - 1 && ","}
                   </span>
                 ))}
             </Typography>
@@ -208,9 +211,10 @@ class TvDetailedInfo extends Component {
             <Typography variant="subtitle1">
               <strong>Created By:</strong>
               {createdBy &&
-                createdBy.map(creator => (
+                createdBy.map((creator, index) => (
                   <span key={creator.id} style={{ color: "red" }}>
-                    {creator.name},
+                    {creator.name}
+                    {index !== createdBy.length - 1 && ","}
                   </span>
                 ))}
             </Typography>

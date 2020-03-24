@@ -77,7 +77,7 @@ class MovieDetailedInfo extends Component {
 
             <Typography variant="subtitle1" gutterBottom>
               <strong>Genres:</strong>
-              {movie.genres.map(genre => (
+              {movie.genres.map((genre, index) => (
                 <span key={genre.id}>
                   {" "}
                   <Link
@@ -94,16 +94,17 @@ class MovieDetailedInfo extends Component {
                     {" "}
                     {genre.name}
                   </Link>
-                  {", "}
+                  {index !== movie.genres.length - 1 && ","}
                 </span>
               ))}
             </Typography>
 
             <Typography variant="subtitle1">
               <strong>Production Companies:</strong>
-              {movie.production_companies.map(company => (
+              {movie.production_companies.map((company, index) => (
                 <span key={company.id} style={{ color: "red" }}>
-                  {company.name},
+                  {company.name}
+                  {index !== movie.production_companies.length - 1 && ","}
                 </span>
               ))}
             </Typography>
@@ -169,9 +170,10 @@ class MovieDetailedInfo extends Component {
             </Typography>
             <Typography variant="subtitle1">
               <strong>Language:</strong>
-              {movie.spoken_languages.map(lang => (
+              {movie.spoken_languages.map((lang, index) => (
                 <span key={lang.name} style={{ color: "red" }}>
-                  {lang.name},
+                  {lang.name}
+                  {index !== movie.spoken_languages.length - 1 && ","}
                 </span>
               ))}
             </Typography>
@@ -185,9 +187,10 @@ class MovieDetailedInfo extends Component {
             </Typography>
             <Typography variant="subtitle1">
               <strong>Country:</strong>
-              {movie.production_countries.map(country => (
+              {movie.production_countries.map((country, index) => (
                 <span key={country.name} style={{ color: "red" }}>
-                  {country.name},
+                  {country.name}
+                  {index !== movie.production_countries.length - 1 && ","}
                 </span>
               ))}
             </Typography>
