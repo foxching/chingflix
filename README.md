@@ -1,4 +1,4 @@
-<h1 align='center'>Movie/Tv Finder App</h1>
+<h1 align='center'>CHINGFLIX</h1>
 
 <h3 align='center'>Basic movie app written in React, Redux and Codesandbox. </h3>
 
