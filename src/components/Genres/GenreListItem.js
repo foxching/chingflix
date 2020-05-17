@@ -29,6 +29,7 @@ const GenreListItem = props => {
   } else {
     img = `https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQmFhR7Y7GCn-4CYDWtt_NmP2l66iNl27wuy_nT1VN4LK08npxA`;
   }
+
   return (
     <div>
       <Flippy
