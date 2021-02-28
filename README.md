@@ -1,16 +1,44 @@
-<h1 align='center'>CHINGFLIX</h1>
+# ChingFlix
 
-<h3 align='center'>Basic movie app written in React </h3>
+movie and series finder built with react.
+
+## Screenshot
+
+### Trending UI
+![dark theme](https://res.cloudinary.com/dtvqrqyqr/image/upload/v1614471739/screenshots/chingflix_2_yveyzk.png)
+
+### Movies UI
+![dark theme](https://res.cloudinary.com/dtvqrqyqr/image/upload/v1614471784/screenshots/chingflix_nm4cny.png)
+
+## Tech stack
+* MovieDB  API 
+* ReactJS
+* Material UI
+* React-alice-carousel
+* redux(soon)
+
+and more
 
 
-### Author
+## Installation
 
-Rechie Lagria
+Install all the dependencies
 
-### Version
-1.0.1
+```sh
+$ npm install
+```
 
-### License
+## Serve
+To serve in the browser  
 
-This project is licensed under the MIT License
+```sh
+$ npm  start
+```
+## Notice
+
+This project is still under development. some features are not yet fully completed..Feel free to contribute!
+
+## License
+MIT 
+
 
