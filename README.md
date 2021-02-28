@@ -4,11 +4,11 @@ movie and series finder built with react.
 
 ## Screenshot
 
-### Trending UI
+### Movies List
 ![dark theme](https://res.cloudinary.com/dtvqrqyqr/image/upload/v1614471739/screenshots/chingflix_2_yveyzk.png)
 
-### Movies UI
-![dark theme](https://res.cloudinary.com/dtvqrqyqr/image/upload/v1614471784/screenshots/chingflix_nm4cny.png)
+### Movie Info
+![dark theme](https://res.cloudinary.com/dtvqrqyqr/image/upload/v1614474514/screenshots/chingflix_2_or4h12.png)
 
 ## Tech stack
 * MovieDB  API 
