@@ -5,7 +5,7 @@ movie and series finder built with react.
 ## Screenshot
 
 ### Movies List
-![dark theme](https://res.cloudinary.com/dtvqrqyqr/image/upload/v1614471739/screenshots/chingflix_2_yveyzk.png)
+![dark theme](https://res.cloudinary.com/dtvqrqyqr/image/upload/v1615700871/screenshots/ss_pk75ym.png)
 
 ### Movie Info
 ![dark theme](https://res.cloudinary.com/dtvqrqyqr/image/upload/v1614474514/screenshots/chingflix_2_or4h12.png)
